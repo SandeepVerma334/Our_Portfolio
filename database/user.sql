@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2025 at 03:53 PM
+-- Generation Time: Jan 20, 2025 at 05:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `user` (
   `id` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL
@@ -38,10 +39,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `role`) VALUES
-(1, 'suman123@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin'),
-(2, 'suman123@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin'),
-(3, 'suman@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin');
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
+(1, 'suman', 'suman123@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin'),
+(2, 'sumanverma', 'suman123@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin'),
+(3, 'sara', 'suman@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin'),
+(4, 'rajani', 'suman@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +63,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

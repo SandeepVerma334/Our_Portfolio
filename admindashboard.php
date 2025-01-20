@@ -1,3 +1,9 @@
+<?php 
+session_start();
+include("config.php");
+print_r($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,11 +48,43 @@
     <script src="js/modernizr.custom.js"></script>
 
     <style>
-         .active-button {
-        font-weight: bold;
-        color: #007bff;
-        border-bottom: 2px solid #007bff;
-    }
+        /* .active-button {
+            font-weight: bold;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        } */
+        .flex-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.nav-tabs .nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-tabs .nav-link {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.nav-link.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    margin-top: 30px;
+}
+
+.form-label {
+    font-size: 14px;
+}
+
+textarea.form-control {
+    height: 100px;
+}
+
     </style>
 </head>
 
@@ -166,71 +204,81 @@
         <h1><span>Dashboard</span></h1>
         <span class="title-bg">Admin</span>
     </section>
+
+
     <section class="flex-container">
-        <li id="portfolio_button" class="form active-button">
-            <a href="#"><span>Portfolio</span></a>
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs" id="navTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="portfolio-tab" data-bs-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio" aria-selected="true">Portfolio</a>
         </li>
-        <li id="blog_button" class="form">
-            <a href="#"><span>Blog</span></a>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="blog-tab" data-bs-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="false">Blog</a>
         </li>
-    </section>
-    
-    <!-- Portfolio Form -->
-    <div id="portfolio_form" style="display:block;margin-top: 130px">
-        <!-- Portfolio form content -->
-        
-        <form class="loginform" method="post" action="#">
-            <div class="loginform">
-                <div class="login_row">
-                    <div class="col-12 col-md-4">
-                        <input type="email" name="portfolio_email" id="portfolio_email" placeholder="YOUR EMAIL">
-                    </div><br>
-                    <div class="col-12 col-md-4">
-                        <input type="password" name="portfolio_password" id="portfolio_password"
-                            placeholder="YOUR PASSWORD">
-                    </div><br>
-                    <div class="col-12 col-md-4">
-                        <select name="portfolio_role" id="role" class="form-control">
-                            <option value="0">ROLE</option>
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" name="portfolio_submit" class="btn btn-login">Send Message</button>
-                    </div>
+    </ul>
+
+    <!-- Tab Contents -->
+    <div class="tab-content" id="navTabContent">
+        <!-- Portfolio Content -->
+        <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
+            <!-- Portfolio Form -->
+            <form class="portfolio-form mt-3">
+                <div class="mb-3">
+                    <label for="portfolioName" class="form-label">Portfolio Name</label>
+                    <input type="text" class="form-control" id="portfolioName" placeholder="Enter Portfolio Name">
                 </div>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Blog Form -->
-    <div id="blog_form" style="display:none;">
-        <h2>Blog Form</h2>
-        <form class="loginform" method="post" action="#">
-            <div class="loginform">
-                <div class="login_row">
-                    <div class="col-12 col-md-4">
-                        <input type="email" name="blog_email" id="blog_email" placeholder="YOUR blog">
-                    </div><br>
-                    <div class="col-12 col-md-4">
-                        <input type="password" name="blog_password" id="blog_password" placeholder="YOUR blog password">
-                    </div><br>
-                    <div class="col-12 col-md-4">
-                        <select name="blog_role" id="blog_role" class="form-control">
-                            <option value="0">ROLE</option>
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" name="blog_submit" class="btn btn-login">Send Message</button>
-                    </div>
+                <div class="mb-3">
+                    <label for="portfolioDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="portfolioDescription" placeholder="Describe your portfolio"></textarea>
                 </div>
-            </div>
-        </form>
+                <button type="submit" class="btn btn-primary">Submit Portfolio</button>
+            </form>
+        </div>
+
+        <!-- Blog Content -->
+        <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
+            <!-- Blog Form -->
+            <form class="blog-form mt-3">
+                <div class="mb-3">
+                    <label for="blogTitle" class="form-label">Blog Title</label>
+                    <input type="text" class="form-control" id="blogTitle" placeholder="Enter Blog Title">
+                </div>
+                <div class="mb-3">
+                    <label for="blogContent" class="form-label">Content</label>
+                    <textarea class="form-control" id="blogContent" placeholder="Write your blog here"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Blog</button>
+            </form>
+        </div>
     </div>
-    
+</section>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.nav-link');
+    const tabContents = document.querySelectorAll('.tab-pane');
+
+    // Set default active tab
+    let activeTab = document.querySelector('.nav-link.active');
+    let activeContent = document.querySelector('.tab-pane.active');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function(event) {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('show', 'active'));
+
+            // Add active class to clicked tab and show corresponding content
+            tab.classList.add('active');
+            const targetContent = document.querySelector(tab.getAttribute('href'));
+            targetContent.classList.add('show', 'active');
+        });
+    });
+});
+
+ </script>
+
+
     <!-- Template JS Files -->
     <script src="js/jquery-3.5.0.min.js"></script>
     <script src="js/styleswitcher.js"></script>
@@ -246,44 +294,6 @@
     <script src="js/custom.js"></script>
 
 </body>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const tabs = document.querySelectorAll(".flex-container .form");
-    const contents = document.querySelectorAll("#portfolio_form, #blog_form");
 
-    const defaultTabId = "portfolio_button"; // Default tab ID
-    const defaultContentId = "portfolio_form"; // Default content ID for the tab
-
-    // Function to activate a tab and its content
-    const activateTab = (tabId, contentId) => {
-        // Remove 'active-button' class from all tabs and hide all content
-        tabs.forEach((tab) => tab.classList.remove("active-button"));
-        contents.forEach((content) => (content.style.display = "none"));
-
-        // Add 'active-button' class to the specified tab and show its content
-        const activeTab = document.getElementById(tabId);
-        const activeContent = document.getElementById(contentId);
-        if (activeTab) activeTab.classList.add("active-button");
-        if (activeContent) activeContent.style.display = "block";
-    };
-
-    // Activate the default tab and content on page load
-    activateTab(defaultTabId, defaultContentId);
-
-    // Add click event listeners to tabs
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            // Get the target content ID based on the clicked tab
-            const targetContentId = this.id === "portfolio_button" ? "portfolio_form" : "blog_form";
-
-            // Activate the clicked tab and its associated content
-            activateTab(this.id, targetContentId);
-        });
-    });
-});
-
-</script>
 
 </html>
