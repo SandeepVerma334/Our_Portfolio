@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 
 <head>
     <meta charset="utf-8">
-    <title>Blog - Personal Portfolio</title>
+    <title>Contact - Personal Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Template Google Fonts -->
+    <!-- Template Google Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
 
@@ -18,6 +18,8 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <!-- CSS Skin File -->
     <link href="css/skins/yellow.css" rel="stylesheet">
@@ -37,10 +39,9 @@
 
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
-        
 </head>
 
-<body class="blog">
+<body class="login">
 <!-- Live Style Switcher Starts - demo only -->
 <div id="switcher" class="">
     <div class="content-switcher">
@@ -78,11 +79,11 @@
             </li>
         </ul>
 
-       <div id="hideSwitcher">&times;</div>
+        <div id="hideSwitcher">&times;</div>
     </div>
 </div>
 <div id="showSwitcher" class="styleSecondColor"><i class="fa fa-cog fa-spin"></i></div>
-<!-- Live Style Switcher Ends - demo only -->
+<!-- Live Style Switcher Ends -  for demo only -->
 <!-- Header Starts -->
 <header class="header" id="navbar-collapse-toggle">
     <!-- Fixed Navigation Starts -->
@@ -105,24 +106,26 @@
                 <h2>Portfolio</h2>
             </a>
         </li>
-        <li class="icon-box">
+        <li class="icon-box active">
             <i class="fa fa-envelope-open"></i>
             <a href="contact.html">
                 <h2>Contact</h2>
             </a>
         </li>
-        <li class="icon-box active">
+        <li class="icon-box">
             <i class="fa fa-comments"></i>
             <a href="blog.html">
                 <h2>Blog</h2>
             </a>
         </li>
         <li class="icon-box">
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-                <a href="login.php">
-                    <h2>Login</h2>
-                </a>
-            </li>
+            <i class="fa fa-sign-in"></i>
+            <a href="login.html">
+                <h2>Login</h2>
+            </a>
+        </li>
+       
+        
     </ul>
     <!-- Fixed Navigation Ends -->
     <!-- Mobile Menu Starts -->
@@ -136,151 +139,58 @@
                 <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li class="active"><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li class="active"><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li><a href="login.html"><i class="fa fa-sign-in"></i><span>Login</span></a></li>
             </ul>
         </div>
     </nav>
     <!-- Mobile Menu Ends -->
 </header>
 <!-- Header Ends -->
-<!-- Page Title Starts -->
 <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
-    <h1>my <span>blog</span></h1>
-    <span class="title-bg">posts</span>
+    <h1>Login <span>Form</span></h1>
+    <span class="title-bg">Contact</span>
 </section>
-<!-- Page Title Ends -->
+
 <!-- Main Content Starts -->
 <section class="main-content revealator-slideup revealator-once revealator-delay1">
     <div class="container">
-        <!-- Articles Starts -->
         <div class="row">
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/entertainment.png" class="img-fluid" alt="Entertainment Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">The Magic of Entertainment Websites</a></h3>
+           
+            <!-- Contact Form Starts -->
+            <div class="col-12 col-lg-8">
+                <form class="loginform" method="post" action="mail.php">
+                    <div class="loginform">
+                        <div class="login_row">
+                           
+                            <div class="col-12 col-md-4">
+                                <input type="email" name="email" id="email" placeholder="YOUR EMAIL">
+                            </div><br>
+                            <div class="col-12 col-md-4">
+                                <input type="email" name="password" id="password" placeholder="YOUR PASSWORD">
+                            </div><br>
+                            <div class="col-12 col-md-4">
+                                <select name="role" id="role" id="role" class="form-control">
+                                    <option value="0">ROLE</option>
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="col-12">
+                               
+                               <button type="submit" class="btn btn-login">Send Message</button>
+                            </div>
                         </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Discover how modern entertainment websites engage users with dynamic content and vibrant designs to provide seamless experiences.</p>
-                        </div>
                     </div>
-                </article>
+                </form>
             </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/empire-ewf.png" class="img-fluid" alt="House Accessories Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Innovative Ideas for House Accessories Websites</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Learn how house accessories websites blend functionality and aesthetics to cater to modern homeowners.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/seafood.png" class="img-fluid" alt="Seafood Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Building Trustworthy Seafood Websites</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Explore how seafood websites ensure freshness, trust, and convenience for customers looking for premium products.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/velozoo.png" class="img-fluid" alt="Bikes Accessories Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Crafting Modern Bike & Accessory Websites</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Unveil the strategies behind creating engaging bike and accessory websites that boost sales and brand loyalty.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/ruffy.png" class="img-fluid" alt="Pet Products Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Elevating Pet Product Websites for Happy Pets</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Discover how pet product websites cater to owners by providing easy navigation, quality items, and valuable tips.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/food.png" class="img-fluid" alt="Food Store Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Online Food Stores: Simplifying Culinary Needs</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Explore how online food stores offer convenience, variety, and freshness in a few clicks to busy food lovers.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
+            <!-- Contact Form Ends -->
         </div>
-        <!-- Articles Ends -->
     </div>
+
 </section>
-
-
-
 <!-- Template JS Files -->
 <script src="js/jquery-3.5.0.min.js"></script>
 <script src="js/styleswitcher.js"></script>
@@ -296,6 +206,20 @@
 <script src="js/custom.js"></script>
 
 </body>
-
-
+<!--<script type="text/javascript">
+    function sendEmail() {
+      Email.send({
+        Host: "sandeepkumar941732@gmail.com",
+        Username: "sandeepkumar941732@email.com",
+        To: 'svwebsolution334@email_address.com',
+        From: "sandeepkumar941732@email.com",
+        Subject: "Sending Email using javascript",
+        Body: "Well that was easy!!",
+      })
+        .then(function (message) {
+          alert("mail sent successfully")
+        });
+    }
+  </script>
+-->
 </html>

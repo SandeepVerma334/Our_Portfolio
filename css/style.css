@@ -1091,6 +1091,47 @@ body.light hr.separator {
   content: "\f071";
   padding-right: 10px;
 }
+/*** login ***/
+
+
+.login .loginform input[type=text],
+.login .loginform input[type=email],
+.login .loginform select#role {
+  border: 1px solid #111;
+  width: 365px; /* Ensures each element spans the full width */
+  background: #252525;
+  color: #fff;
+  padding: 11px 26px; /* Adds padding for text inputs and dropdown */
+  margin-bottom: 30px; /* Creates spacing between elements */
+  border-radius: 30px; /* Makes the edges rounded */
+  outline: none !important;
+  transition: 0.3s;
+  display: block; /* Ensures each element starts on a new line */
+  margin-left: 400px;
+}
+
+select#role {
+  color: #838383 !important; /* Dropdown-specific text color */
+  font-size: 15px;
+  height: 47px; /* Dropdown height */
+  font-family: inherit;
+  font-weight: 100;
+ 
+}
+.login_row {
+ 
+  display: block;
+  -ms-flex-wrap: wrap;
+  flex-wrap:unset;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: center;
+}
+.btn-login{
+  margin-left: 480px;
+  margin-top: 20px;
+}
+/*** login ends ***/
 
 /*** Blog ***/
 
@@ -1225,6 +1266,7 @@ select#budget {
   font-family: inherit;
   font-weight: 100;
 }
+
 
 /* [ RESPONSIVE DESIGN STYLES ] */
 
