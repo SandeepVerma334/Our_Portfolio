@@ -42,11 +42,11 @@
     <script src="js/modernizr.custom.js"></script>
 
     <style>
-        .active-button {
-            font-weight: bold;
-            color: #007bff;
-            border-bottom: 2px solid #007bff;
-        }
+         .active-button {
+        font-weight: bold;
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
+    }
     </style>
 </head>
 
@@ -166,19 +166,18 @@
         <h1><span>Dashboard</span></h1>
         <span class="title-bg">Admin</span>
     </section>
-
-
     <section class="flex-container">
-        <li id="portfolio_button" class="portfolio_form form active-button">
+        <li id="portfolio_button" class="form active-button">
             <a href="#"><span>Portfolio</span></a>
         </li>
-        <li id="blog_button" class="blog_section form">
+        <li id="blog_button" class="form">
             <a href="#"><span>Blog</span></a>
         </li>
     </section>
-
+    
     <!-- Portfolio Form -->
     <div id="portfolio_form" style="display:block;margin-top: 130px">
+        <!-- Portfolio form content -->
         
         <form class="loginform" method="post" action="#">
             <div class="loginform">
@@ -204,7 +203,7 @@
             </div>
         </form>
     </div>
-
+    
     <!-- Blog Form -->
     <div id="blog_form" style="display:none;">
         <h2>Blog Form</h2>
@@ -212,10 +211,10 @@
             <div class="loginform">
                 <div class="login_row">
                     <div class="col-12 col-md-4">
-                        <input type="email" name="blog_email" id="blog_email" placeholder="YOUR EMAIL">
+                        <input type="email" name="blog_email" id="blog_email" placeholder="YOUR blog">
                     </div><br>
                     <div class="col-12 col-md-4">
-                        <input type="password" name="blog_password" id="blog_password" placeholder="YOUR PASSWORD">
+                        <input type="password" name="blog_password" id="blog_password" placeholder="YOUR blog password">
                     </div><br>
                     <div class="col-12 col-md-4">
                         <select name="blog_role" id="blog_role" class="form-control">
@@ -231,7 +230,7 @@
             </div>
         </form>
     </div>
-
+    
     <!-- Template JS Files -->
     <script src="js/jquery-3.5.0.min.js"></script>
     <script src="js/styleswitcher.js"></script>
@@ -248,35 +247,42 @@
 
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get elements
-        const portfolioButton = document.getElementById("portfolio_button");
-        const blogButton = document.getElementById("blog_button");
-        const portfolioForm = document.getElementById("portfolio_form");
-        const blogForm = document.getElementById("blog_form");
+document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".flex-container .form");
+    const contents = document.querySelectorAll("#portfolio_form, #blog_form");
 
-        // Add active state toggle
-        const setActiveButton = (button) => {
-            document.querySelectorAll(".form").forEach((btn) => btn.classList.remove("active-button"));
-            button.classList.add("active-button");
-        };
+    const defaultTabId = "portfolio_button"; // Default tab ID
+    const defaultContentId = "portfolio_form"; // Default content ID for the tab
 
-        // Portfolio button click event
-        portfolioButton.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent page reload
-            portfolioForm.style.display = "block"; // Show portfolio form
-            blogForm.style.display = "none"; // Hide blog form
-            setActiveButton(portfolioButton); // Set active button
-        });
+    // Function to activate a tab and its content
+    const activateTab = (tabId, contentId) => {
+        // Remove 'active-button' class from all tabs and hide all content
+        tabs.forEach((tab) => tab.classList.remove("active-button"));
+        contents.forEach((content) => (content.style.display = "none"));
 
-        // Blog button click event
-        blogButton.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent page reload
-            blogForm.style.display = "block"; // Show blog form
-            portfolioForm.style.display = "none"; // Hide portfolio form
-            setActiveButton(blogButton); // Set active button
+        // Add 'active-button' class to the specified tab and show its content
+        const activeTab = document.getElementById(tabId);
+        const activeContent = document.getElementById(contentId);
+        if (activeTab) activeTab.classList.add("active-button");
+        if (activeContent) activeContent.style.display = "block";
+    };
+
+    // Activate the default tab and content on page load
+    activateTab(defaultTabId, defaultContentId);
+
+    // Add click event listeners to tabs
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Get the target content ID based on the clicked tab
+            const targetContentId = this.id === "portfolio_button" ? "portfolio_form" : "blog_form";
+
+            // Activate the clicked tab and its associated content
+            activateTab(this.id, targetContentId);
         });
     });
+});
 
 </script>
 

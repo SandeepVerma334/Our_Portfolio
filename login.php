@@ -1,34 +1,41 @@
 <?php
 include("config.php");
 
-if (isset($_POST['submit'])) {
+// Start the session
+session_start();
+
+if (isset($_POST['login'])) {
     $email = $_POST['email'];
-    $passwords =md5($_POST['password']);
-    $role = $_POST['role'];
-    
+    $password = md5($_POST['password']); // Securely hash the password
 
-   
-        // Insert query
-        $iquery = "INSERT INTO user ( email, password, role) VALUES ('$email','$passwords','$role')";
-        $runq = mysqli_query($conn, $iquery);
+    // Query to check email and password
+    $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+    $val = mysqli_query($conn, $sql);
 
-        if ($runq) {
-            // Check role and redirect accordingly
-            if ($role === 'user') {
-                header("Location: index.html");
-                exit; // Stop further execution after redirect
-            } elseif ($role === 'admin') {
-                header("Location: admindashboard.html");
-                exit;
-            } else {
-                echo "Invalid role selected.";
-            }
+    if (mysqli_num_rows($val)) {
+        $row = mysqli_fetch_array($val);
+        
+        // Save session variables
+        $_SESSION['name'] = $row['name'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['user_id'] = $row['uid'];
+        $_SESSION['role'] = $row['role']; // Assuming 'role' column exists in the table
+
+        // Check the role and redirect accordingly
+        if ($row['role'] === 'admin') {
+            header('Location: admindashboard.html'); // Redirect to admin dashboard
+            exit();
         } else {
-            echo "Not inserted. Error: " . mysqli_error($conn);
+            header('Location: index.html'); // Redirect to user homepage
+            exit();
         }
+    } else {
+        echo "<span style='color: red;'>Invalid Email or Password!</span>";
     }
-
+}
 ?>
+
+
 
 
 
@@ -181,7 +188,7 @@ if (isset($_POST['submit'])) {
 </header>
 <!-- Header Ends -->
 <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
-    <h1>Login <span>Form</span></h1>
+    <h1><?php echo htmlspecialchars($_SESSION['name']); ?> <span></span></h1>
     <span class="title-bg">Contact</span>
 </section>
 
@@ -202,16 +209,10 @@ if (isset($_POST['submit'])) {
                             <div class="col-12 col-md-4">
                                 <input type="password" name="password" id="password" placeholder="YOUR PASSWORD">
                             </div><br>
-                            <div class="col-12 col-md-4">
-                                <select name="role" id="role" id="role" class="form-control">
-                                    <option value="0">ROLE</option>
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                    </select>
-                            </div>
+                           
                             <div class="col-12">
                                
-                               <button type="submit" name="submit" class="btn btn-login">Send Message</button>
+                               <button type="submit" name="login" class="btn btn-login">Send Message</button>
                             </div>
                         </div>
                     </div>
