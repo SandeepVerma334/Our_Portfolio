@@ -1,10 +1,49 @@
+<?php
+include("config.php");
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $passwords =md5($_POST['password']);
+    $role = $_POST['role'];
+    
+
+   
+        // Insert query
+        $iquery = "INSERT INTO user ( email, password, role) VALUES ('$email','$passwords','$role')";
+        $runq = mysqli_query($conn, $iquery);
+
+        if ($runq) {
+            // Check role and redirect accordingly
+            if ($role === 'user') {
+                header("Location: index.html");
+                exit; // Stop further execution after redirect
+            } elseif ($role === 'admin') {
+                header("Location: admindashboard.html");
+                exit;
+            } else {
+                echo "Invalid role selected.";
+            }
+        } else {
+            echo "Not inserted. Error: " . mysqli_error($conn);
+        }
+    }
+
+?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 
 <head>
     <meta charset="utf-8">
-    <title>Contact - Personal Portfolio</title>
+    <title>Login - Personal Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Template Google Fonts  -->
@@ -118,12 +157,6 @@
                 <h2>Blog</h2>
             </a>
         </li>
-        <li class="icon-box">
-            <i class="fa fa-sign-in"></i>
-            <a href="login.html">
-                <h2>Login</h2>
-            </a>
-        </li>
        
         
     </ul>
@@ -141,8 +174,7 @@
                 <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li class="active"><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                 <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
-                <li><a href="login.html"><i class="fa fa-sign-in"></i><span>Login</span></a></li>
-            </ul>
+              </ul>
         </div>
     </nav>
     <!-- Mobile Menu Ends -->
@@ -160,7 +192,7 @@
            
             <!-- Login Form Starts -->
             <div class="col-12 col-lg-8">
-                <form class="loginform" method="post" action="mail.php">
+                <form class="loginform" method="post" action="#">
                     <div class="loginform">
                         <div class="login_row">
                            
@@ -168,7 +200,7 @@
                                 <input type="email" name="email" id="email" placeholder="YOUR EMAIL">
                             </div><br>
                             <div class="col-12 col-md-4">
-                                <input type="email" name="password" id="password" placeholder="YOUR PASSWORD">
+                                <input type="password" name="password" id="password" placeholder="YOUR PASSWORD">
                             </div><br>
                             <div class="col-12 col-md-4">
                                 <select name="role" id="role" id="role" class="form-control">
@@ -179,7 +211,7 @@
                             </div>
                             <div class="col-12">
                                
-                               <button type="submit" class="btn btn-login">Send Message</button>
+                               <button type="submit" name="submit" class="btn btn-login">Send Message</button>
                             </div>
                         </div>
                     </div>

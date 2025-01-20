@@ -1094,7 +1094,7 @@ body.light hr.separator {
 /*** login ***/
 
 
-.login .loginform input[type=text],
+.login .loginform input[type=password],
 .login .loginform input[type=email],
 .login .loginform select#role {
   border: 1px solid #111;
@@ -1822,3 +1822,31 @@ select#budget {
     margin-top: 35px !important;
   }
 }
+/*** admindashboard styling starts ***/
+
+.flex-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: -50px 200px;
+}
+.blog_section{
+  margin-top: 60px;
+}
+
+.flex-container li {
+  margin: 0 10px; /* Adds some spacing between the items */
+}
+
+.flex-container a {
+  text-decoration: none; /* Removes underline from links */
+  color: #fffafa; /* Sets text color */
+  font-size: 1.5rem; /* Adjusts font size */
+  margin-left: 60px;
+}
+
+
+
+/*** admindashboard styling ends ***/
