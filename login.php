@@ -1,34 +1,50 @@
 <?php
+// Start session
+session_start();
+
+// Include database connection
 include("config.php");
 
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
-    $passwords =md5($_POST['password']);
-    $role = $_POST['role'];
-    
+    $passwords = md5($_POST['password']);
 
-   
-        // Insert query
-        $iquery = "INSERT INTO user ( email, password, role) VALUES ('$email','$passwords','$role')";
-        $runq = mysqli_query($conn, $iquery);
-
-        if ($runq) {
-            // Check role and redirect accordingly
-            if ($role === 'user') {
-                header("Location: index.html");
-                exit; // Stop further execution after redirect
-            } elseif ($role === 'admin') {
-                header("Location: admindashboard.html");
-                exit;
-            } else {
-                echo "Invalid role selected.";
-            }
-        } else {
-            echo "Not inserted. Error: " . mysqli_error($conn);
-        }
+    // Validate form inputs
+    if (empty($email) || empty($passwords)) {
+        echo "Please fill all fields.";
+        exit;
     }
 
+    // Check user credentials
+    $query = "SELECT id, email, name, role FROM user WHERE email='$email' AND password='$passwords'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        // Set session variables
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['name'] = $user['name']; // Storing the name in session
+
+        // Redirect based on role
+        if ($user['role'] === 'admin') {
+            header("Location: admindashboard.php");
+            exit; // Ensure the script stops after redirect
+        } else {
+            header("Location: dashboard.php"); // Redirecting to a regular user dashboard (you can adjust this path)
+            exit; // Ensure the script stops after redirect
+        }
+    } else {
+        echo "Invalid email or password.";
+    }
+}
 ?>
+
+
+
+
 
 
 
@@ -78,6 +94,13 @@ if (isset($_POST['submit'])) {
 
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
+    <style>
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+</style>
 </head>
 
 <body class="login">
@@ -187,41 +210,75 @@ if (isset($_POST['submit'])) {
 
 <!-- Main Content Starts -->
 <section class="main-content revealator-slideup revealator-once revealator-delay1">
-    <div class="container">
-        <div class="row">
-           
-            <!-- Login Form Starts -->
-            <div class="col-12 col-lg-8">
-                <form class="loginform" method="post" action="#">
-                    <div class="loginform">
-                        <div class="login_row">
-                           
-                            <div class="col-12 col-md-4">
-                                <input type="email" name="email" id="email" placeholder="YOUR EMAIL">
-                            </div><br>
-                            <div class="col-12 col-md-4">
-                                <input type="password" name="password" id="password" placeholder="YOUR PASSWORD">
-                            </div><br>
-                            <div class="col-12 col-md-4">
-                                <select name="role" id="role" id="role" class="form-control">
-                                    <option value="0">ROLE</option>
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                    </select>
-                            </div>
-                            <div class="col-12">
-                               
-                               <button type="submit" name="submit" class="btn btn-login">Send Message</button>
-                            </div>
+<div class="container">
+    <div class="row">
+        <!-- Login Form Starts -->
+        <div class="col-12 col-lg-8">
+            <form class="loginform" method="post" action="#" id="loginForm">
+                <div class="loginform">
+                    <div class="login_row">
+                        <div class="col-12 col-md-4">
+                            <input type="email" name="email" id="email" placeholder="YOUR EMAIL" required>
+                            <span id="emailError" class="error"></span>
+                        </div><br>
+                        <div class="col-12 col-md-4">
+                            <input type="password" name="password" id="password" placeholder="YOUR PASSWORD"required>
+                            <span id="passwordError" class="error"></span>
+                        </div><br>
+                        <div class="col-12">
+                            <button type="submit" name="submit" class="btn btn-login">Submit</button>
                         </div>
                     </div>
-                </form>
-            </div>
-            <!-- Login Form Ends  -->
+                </div>
+            </form>
         </div>
+        <!-- Login Form Ends -->
     </div>
-
+</div>
 </section>
+
+<!-- <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        let isValid = true;
+
+        // Clear previous error messages
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+
+        // Validate email
+        const email = document.getElementById('email').value;
+        if (!email) {
+            document.getElementById('emailError').textContent = 'Email is required.';
+            isValid = false;
+        }
+
+        // Validate password
+        const password = document.getElementById('password').value;
+        if (!password) {
+            document.getElementById('passwordError').textContent = 'Password is required.';
+            isValid = false;
+        }
+
+        // Submit the form if valid
+        if (isValid) {
+            this.submit();
+        }
+    });
+
+    // Remove error when field is filled
+    document.getElementById('email').addEventListener('input', function() {
+        if (this.value) {
+            document.getElementById('emailError').textContent = '';
+        }
+    });
+
+    document.getElementById('password').addEventListener('input', function() {
+        if (this.value) {
+            document.getElementById('passwordError').textContent = '';
+        }
+    });
+</script> -->
 <!-- Template JS Files -->
 <script src="js/jquery-3.5.0.min.js"></script>
 <script src="js/styleswitcher.js"></script>
@@ -237,20 +294,4 @@ if (isset($_POST['submit'])) {
 <script src="js/custom.js"></script>
 
 </body>
-<!--<script type="text/javascript">
-    function sendEmail() {
-      Email.send({
-        Host: "sandeepkumar941732@gmail.com",
-        Username: "sandeepkumar941732@email.com",
-        To: 'svwebsolution334@email_address.com',
-        From: "sandeepkumar941732@email.com",
-        Subject: "Sending Email using javascript",
-        Body: "Well that was easy!!",
-      })
-        .then(function (message) {
-          alert("mail sent successfully")
-        });
-    }
-  </script>
--->
 </html>
