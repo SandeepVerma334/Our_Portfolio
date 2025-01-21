@@ -247,7 +247,7 @@ textarea.form-control {
     </header>
     <!-- Header Ends -->
     <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
-        <h1><span>suman</span></h1>
+        <h1><span><?php echo $_SESSION['name']; ?></span></h1>
         <span class="title-bg"><?php echo $_SESSION['role']; ?></span>
     </section>
 
@@ -359,7 +359,7 @@ tagInput.addEventListener('keyup', (e) => {
             const tag = document.createElement('div');
             tag.classList.add('tag');
             tag.setAttribute('name', 'inputTechnologies');
-            tag.innerHTML = '${technologyText} <button type="button">&times;</button>';
+            tag.innerHTML = `${technologyText} <button type="button">&times;</button>`;
 
             tag.querySelector('button').addEventListener('click', () => {
                 technologies.splice(technologies.indexOf(technologyText), 1);
