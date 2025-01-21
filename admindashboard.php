@@ -133,7 +133,7 @@ textarea.form-control {
     </style>
 </head>
 
-<body class="login">
+<body class="project">
     <!-- Live Style Switcher Starts - demo only -->
     <div id="switcher" class="">
         <div class="content-switcher">
@@ -247,7 +247,7 @@ textarea.form-control {
     </header>
     <!-- Header Ends -->
     <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
-        <h1><span><?php echo $_SESSION['name']; ?></span></h1>
+        <h1><span>suman</span></h1>
         <span class="title-bg"><?php echo $_SESSION['role']; ?></span>
     </section>
 
@@ -264,14 +264,15 @@ textarea.form-control {
         <li>            
             <button type="submit" name="logout_button" class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>        
     </li>
-    </ul>
+    </ul></section>
+    <section>
 
     <!-- Tab Contents -->
     <div class="tab-content" id="navTabContent">
     <!-- Portfolio Content -->
     <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
         <!-- Portfolio Form -->
-            <form method="POST" action="" enctype="multipart/form-data">
+            <form method="POST" action="" enctype="multipart/form-data" class="form mt-3" id="portfolioForm">
         <div class="mb-3">
             <label for="portfolioName" class="form-label">Portfolio Name</label>
             <input type="text" class="form-control" id="portfolioName" name="portfolioName" required>
@@ -292,28 +293,29 @@ textarea.form-control {
             <label for="image" class="form-label">Portfolio Project Image</label>
             <input type="file" name="image" class="form-control" id="image" required>
         </div>
-        <button type="submit" name="portfolio_submit" class="btn btn-primary">Submit Portfolio</button>
+        <button type="submit" name="portfolio_submit" class="btn btn-primary btn-form">Submit Portfolio</button>
     </form>
     </div>
 
     <!-- Blog Content -->
     <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
         <!-- Blog Form -->
-        <form method="POST" action="" enctype="multipart/form-data" class="blog-form mt-3" id="blogForm">
+        <form method="POST" action="" enctype="multipart/form-data" class="blog-form form mt-3" id="blogForm">
     <div class="mb-3">
         <label for="image" class="form-label">Blog Image</label>
-        <input type="file" name="blogImage" class="form-control" id="image" required>
+        <input type="file" class="form-control" id="inputGroupFile02 image" name="blogImage">
         <span class="error" id="errormessage"></span>
     </div>
     <div class="mb-3">
         <label for="blogTitle" class="form-label">Blog Title</label>
         <input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="Enter Blog Title" required>
     </div>
+  
     <div class="mb-3">
         <label for="blogContent" class="form-label">Content</label>
         <textarea class="form-control" name="blogContent" id="blogContent" placeholder="Write your blog here" required></textarea>
     </div>
-    <button type="submit" name="blog_submit" class="btn btn-primary">Submit Blog</button>
+    <button type="submit" name="blog_submit" class="btn btn-primary btn-form">Submit Blog</button>
 </form>
     </div>
 </div>
@@ -357,7 +359,7 @@ tagInput.addEventListener('keyup', (e) => {
             const tag = document.createElement('div');
             tag.classList.add('tag');
             tag.setAttribute('name', 'inputTechnologies');
-            tag.innerHTML = `${technologyText} <button type="button">&times;</button>`;
+            tag.innerHTML = '${technologyText} <button type="button">&times;</button>';
 
             tag.querySelector('button').addEventListener('click', () => {
                 technologies.splice(technologies.indexOf(technologyText), 1);
