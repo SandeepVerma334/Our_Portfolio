@@ -1128,7 +1128,7 @@ select#role {
   justify-content: center;
 }
 .btn-login{
-  margin-left: 480px;
+  margin-left: 520px;
   margin-top: 20px;
 }
 /*** login ends ***/
@@ -1847,6 +1847,85 @@ select#budget {
   margin-left: 60px;
 }
 
+.nav-tabs {
+ /*  border-bottom: 1px solid #dee2e6; */
+ text-decoration :none;
+  margin-top: -9px;
+  margin-left: -213px;
+}
+.form{
+  margin-top: 50px;
+  margin-left: -95px;
+  color: #252525;
+}
+/*** admindashboard portfolio form styleing starts ***/
+.project .form input[type=text],
+.project .form input[type=file],
+.project .form textarea
+ {
+  border: 1px solid #111;
+  width: 500px; /* Ensures each element spans the full width */
+  background: #252525;
+  color: #fff;
+  padding: 11px 26px; /* Adds padding for text inputs and dropdown */
+  margin-bottom: 30px; /* Creates spacing between elements */
+  border-radius: 30px; /* Makes the edges rounded */
+  outline: none !important;
+  transition: 0.3s;
+  display: block; /* Ensures each element starts on a new line */
+  margin-left: 400px;
+  height : 55px;
+}
+.form label{
+  margin-left: 400px;
+  /* display: none; */
+  color: #838080;
+}
 
+select#language {
+  color: #838383 !important; /* Dropdown-specific text color */
+  font-size: 15px;
+  height: 47px; /* Dropdown height */
+  font-family: inherit;
+  font-weight: 100;
+ 
+}
+.portfolio_row {
+ 
+  display: block;
+  -ms-flex-wrap: wrap;
+  flex-wrap:unset;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+
+.btn-form{
+  margin-left: 545px;
+}
+/*** admindashboard styling ends ***/
+
+/* .nav{
+  margin-left: -326px;
+    margin-top: -32px;
+} */
+/* Customize the underline under the active tab */
+.nav-tabs {
+  border-bottom: none; /* Adjust thickness and color */
+  border-radius: 2px ;
+  margin-top: -36px;
+
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+ 
 
 /*** admindashboard styling ends ***/

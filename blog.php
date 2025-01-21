@@ -1,4 +1,19 @@
-﻿<!DOCTYPE html>
+﻿
+
+
+<?php
+// Start session
+session_start();
+print_r($_SESSION['blog_data']);
+
+// Include database connection
+include("config.php");
+
+
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 

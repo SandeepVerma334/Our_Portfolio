@@ -1,13 +1,81 @@
-<?php 
+<?php
 session_start();
+// print_r($_SESSION);
+
+
 include("config.php");
-print_r($_SESSION);
+if (empty($_SESSION['email']) || empty($_SESSION['user_id']) || empty($_SESSION['role'])) {    
+    header("Location: login.php");
+    exit();
+}
+ // Save the user's name from the database during login
+ if (!isset($_SESSION['name'])) {
+    $userId = $_SESSION['id']; // Assuming user ID is stored in the session
+    $query = "SELECT name FROM users WHERE id = '$userId'"; // Adjust table and column names
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+        $_SESSION['name'] = $user['name']; // Store the name in session
+    } else {
+        $_SESSION['name'] = "Guest"; // Default if no name found
+    }
+}
+if (isset($_POST['portfolio_submit'])) {    
+    $projectName = $_POST['portfolioName'];
+    $clientName = $_POST['clientName'];
+    $inputTechnologies = $_POST['inputTechnologies']; 
+
+    $image = $_FILES['image']['name'];
+    $targetDir = "portfolio_uploads/";
+    $targetFile = $targetDir . basename($_FILES["image"]["name"]);
+    move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile);
+
+    $sql = "INSERT INTO portfolio (projectName, clientName, inputTechnologies, portfolioImage) 
+            VALUES ('$projectName', '$clientName', '$inputTechnologies', '$image')";
+    if (mysqli_query($conn, $sql)) {
+        echo "Portfolio successfully added!";
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+
+// Blog Form Submission
+if (isset($_POST['blog_submit'])) {
+    // Collecting form data
+    $blogTitle = $_POST['blogTitle'];
+    $blogContent = $_POST['blogContent'];
+    $image = $_FILES['blogImage']['name']; // Assuming image is uploaded via a form
+
+    // Image upload process (move the uploaded file to the server folder)
+    $targetDir = "Blog_uploads/"; // The folder where images will be uploaded
+    $targetFile = $targetDir . basename($_FILES["blogImage"]["name"]);
+    move_uploaded_file($_FILES["blogImage"]["tmp_name"], $targetFile);
+
+   
+    
+  
+   
+
+    // Inserting into the blog table
+    $sql = "INSERT INTO blog (blogTitle, blogContent, blogImage, createdAt) 
+            VALUES ('$blogTitle', '$blogContent', '$image', NOW())";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "Blog successfully added!";
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+     // Check if there's any data in session and use it to populate the form fields
+    
+  
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="utf-8">
     <title>Login - Personal Portfolio</title>
@@ -85,10 +153,33 @@ textarea.form-control {
     height: 100px;
 }
 
+.tag {
+    background: #252525;
+    border: 1px solid #111;
+color:    #838080;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 0.875em;
+    display: flex;
+    width:65px;
+    margin-bottom:3px;
+    margin-left:400px;
+    align-items: center;
+    color:
+}
+.tag button {
+    background: none;
+    border: none;
+    font-size: 1em;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
     </style>
 </head>
 
-<body class="login">
+<body class="project">
     <!-- Live Style Switcher Starts - demo only -->
     <div id="switcher" class="">
         <div class="content-switcher">
@@ -171,16 +262,22 @@ textarea.form-control {
             </li>
             <li class="icon-box">
                 <i class="fa fa-comments"></i>
-                <a href="blog.html">
+                <a href="blog.php">
                     <h2>Blog</h2>
                 </a>
             </li>
-
+            <li class="icon-box">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a href="logout.php">
+                    <h2>Logout</h2>
+                </a>
+            </li>
 
 
         </ul>
         <!-- Fixed Navigation Ends -->
         <!-- Mobile Menu Starts -->
+        
         <nav role="navigation" class="d-block d-lg-none">
             <div id="menuToggle">
                 <input type="checkbox" />
@@ -191,9 +288,8 @@ textarea.form-control {
                     <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                     <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                     <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                    <li class="active"><a href="contact.html"><i
-                                class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                    <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                    <li class="active"><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                    <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>                    
                 </ul>
             </div>
         </nav>
@@ -201,12 +297,12 @@ textarea.form-control {
     </header>
     <!-- Header Ends -->
     <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
-        <h1><span>Dashboard</span></h1>
-        <span class="title-bg">Admin</span>
+        <h1><span><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8'); ?></span></h1>
+        <span class="title-bg"><?php echo $_SESSION['role']; ?></span>
     </section>
 
 
-    <section class="flex-container">
+    <section class="flex-container container">
     <!-- Navigation Tabs -->
     <ul class="nav nav-tabs" id="navTabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -215,42 +311,65 @@ textarea.form-control {
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="blog-tab" data-bs-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="false">Blog</a>
         </li>
-    </ul>
+        <!-- <li>            
+            <button type="submit" name="logout_button" class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>        
+    </li> -->
+    </ul></section>
+    <section class="tabs container">
 
     <!-- Tab Contents -->
     <div class="tab-content" id="navTabContent">
-        <!-- Portfolio Content -->
-        <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
-            <!-- Portfolio Form -->
-            <form class="portfolio-form mt-3">
-                <div class="mb-3">
-                    <label for="portfolioName" class="form-label">Portfolio Name</label>
-                    <input type="text" class="form-control" id="portfolioName" placeholder="Enter Portfolio Name">
-                </div>
-                <div class="mb-3">
-                    <label for="portfolioDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="portfolioDescription" placeholder="Describe your portfolio"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Portfolio</button>
-            </form>
+    <!-- Portfolio Content -->
+    <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
+        <!-- Portfolio Form -->
+            <form method="POST" action="" enctype="multipart/form-data" class="form mt-3" id="portfolioForm">
+        <div class="mb-3">
+            <label for="portfolioName" class="form-label">Portfolio Name</label>
+            <input type="text" class="form-control" id="portfolioName" name="portfolioName" required>
         </div>
-
-        <!-- Blog Content -->
-        <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
-            <!-- Blog Form -->
-            <form class="blog-form mt-3">
-                <div class="mb-3">
-                    <label for="blogTitle" class="form-label">Blog Title</label>
-                    <input type="text" class="form-control" id="blogTitle" placeholder="Enter Blog Title">
-                </div>
-                <div class="mb-3">
-                    <label for="blogContent" class="form-label">Content</label>
-                    <textarea class="form-control" id="blogContent" placeholder="Write your blog here"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Blog</button>
-            </form>
+        <div class="mb-3">
+            <label for="clientName" class="form-label">Client Name</label>
+            <input type="text" class="form-control" id="clientName" name="clientName" required>
         </div>
+        <div class="mb-3">
+                    <label for="Technologies" class="form-label">Technologies</label>
+                    <div class="Technologies-container" id="TechnologiesContainer">
+                        <input type="hidden" name="inputTechnologies" id="hiddenTechnologies">
+                        <input type="text" name="Technologies" class="tag-input" id="tagInput" placeholder="Type and press space">
+                    </div>
+                    <span class="error" id="errorTechnologies"></span>
+                </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Portfolio Project Image</label>
+            <input type="file" name="image" class="form-control" id="image" required>
+        </div>
+        <button type="submit" name="portfolio_submit" class="btn btn-primary btn-form">Submit Portfolio</button>
+    </form>
     </div>
+
+    <!-- Blog Content -->
+    <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
+        <!-- Blog Form -->
+        <form method="POST" action="" enctype="multipart/form-data" class="blog-form form mt-3" id="blogForm">
+    <div class="mb-3">
+        <label for="image" class="form-label">Blog Image</label>
+        <input type="file" class="form-control" id="inputGroupFile02 image" name="blogImage">
+        <span class="error" id="errormessage"></span>
+    </div>
+    <div class="mb-3">
+        <label for="blogTitle" class="form-label">Blog Title</label>
+        <input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="Enter Blog Title" required>
+    </div>
+  
+    <div class="mb-3">
+        <label for="blogContent" class="form-label">Content</label>
+        <textarea class="form-control" name="blogContent" id="blogContent" placeholder="Write your blog here" required></textarea>
+    </div>
+    <button type="submit" name="blog_submit" class="btn btn-primary btn-form">Submit Blog</button>
+</form>
+    </div>
+</div>
+
 </section>
 
  <script>
@@ -274,6 +393,43 @@ textarea.form-control {
             targetContent.classList.add('show', 'active');
         });
     });
+
+
+    const tagInput = document.getElementById('tagInput');
+const technologiesContainer = document.getElementById('TechnologiesContainer');
+const hiddenTechnologies = document.getElementById('hiddenTechnologies'); // Hidden input for technologies
+const errorTechnologies = document.getElementById('errorTechnologies');
+const technologies = [];
+
+tagInput.addEventListener('keyup', (e) => {
+    if (e.key === ' ' && tagInput.value.trim() !== '') {
+        const technologyText = tagInput.value.trim();
+        if (!technologies.includes(technologyText)) {
+            technologies.push(technologyText);
+            const tag = document.createElement('div');
+            tag.classList.add('tag');
+            tag.setAttribute('name', 'inputTechnologies');
+            tag.innerHTML = `${technologyText} <button type="button">&times;</button>`;
+
+            tag.querySelector('button').addEventListener('click', () => {
+                technologies.splice(technologies.indexOf(technologyText), 1);
+                tag.remove();
+                updateHiddenTechnologies();
+            });
+
+            technologiesContainer.insertBefore(tag, tagInput);
+            updateHiddenTechnologies(); // Update hidden technologies when a tag is added
+        }
+        tagInput.value = ''; // Clear the input field after adding a tag
+    }
+});
+
+// Function to update the hidden input field with the technologies
+function updateHiddenTechnologies() {
+    hiddenTechnologies.value = technologies.join(','); // Join the technologies with commas
+}
+
+
 });
 
  </script>

@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Check user credentials
-    $query = "SELECT id, email, role FROM user WHERE email='$email' AND password='$passwords'";
+    $query = "SELECT id, email, name, role FROM user WHERE email='$email' AND password='$passwords'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
@@ -26,13 +26,14 @@ if (isset($_POST['submit'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['name'] = $user['name']; // Storing the name in session
 
         // Redirect based on role
         if ($user['role'] === 'admin') {
             header("Location: admindashboard.php");
             exit; // Ensure the script stops after redirect
         } else {
-            header("Location: index.html");
+            header("Location: dashboard.php"); // Redirecting to a regular user dashboard (you can adjust this path)
             exit; // Ensure the script stops after redirect
         }
     } else {
@@ -40,6 +41,7 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+
 
 
 
@@ -174,7 +176,7 @@ if (isset($_POST['submit'])) {
         </li>
         <li class="icon-box">
             <i class="fa fa-comments"></i>
-            <a href="blog.html">
+            <a href="blog.php">
                 <h2>Blog</h2>
             </a>
         </li>
@@ -194,7 +196,7 @@ if (isset($_POST['submit'])) {
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li class="active"><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
               </ul>
         </div>
     </nav>
