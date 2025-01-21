@@ -140,10 +140,31 @@
 <!-- Header Ends -->
 <!-- Page Title Starts -->
 <?php 
-
 include("config.php");
 
-$portfolioQuery = "SELECT id, projectName, clientName, inputTechnologies, portfolioImage, createdAt FROM portfolio WHERE 1";
+// Define the number of results per page
+$resultsPerPage = 6;
+
+// Get the current page number from the URL, default to 1 if not set
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+
+// Calculate the starting limit for the query
+$startLimit = ($page - 1) * $resultsPerPage;
+
+// Get the total number of portfolio items
+$totalQuery = "SELECT COUNT(*) AS total FROM portfolio";
+$totalResult = mysqli_query($conn, $totalQuery);
+$totalRow = mysqli_fetch_assoc($totalResult);
+$totalItems = $totalRow['total'];
+
+// Calculate the total number of pages
+$totalPages = ceil($totalItems / $resultsPerPage);
+
+// Fetch the portfolio items for the current page
+$portfolioQuery = "SELECT id, projectName, clientName, inputTechnologies, portfolioImage, createdAt 
+                   FROM portfolio 
+                   LIMIT $startLimit, $resultsPerPage";
 $portfolioResult = mysqli_query($conn, $portfolioQuery);
 ?>
 
@@ -179,50 +200,37 @@ $portfolioResult = mysqli_query($conn, $portfolioQuery);
             </ul>
         </section>
         <!-- Portfolio Grid Ends -->
-        <!-- Portfolio Details Starts -->
-        <section class="slideshow">
-            <ul>
-                <?php 
-                if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
-                    mysqli_data_seek($portfolioResult, 0); // Reset pointer to reuse result set
-                    while ($portfolio = mysqli_fetch_assoc($portfolioResult)) {
-                ?>
-                <!-- Portfolio Item Detail Starts -->
-                <li>
-                    <figure>
-                        <figcaption>
-                            <h3><?php echo htmlspecialchars($portfolio['projectName']); ?></h3>
-                            <div class="row open-sans-font">
-                                <div class="col-12 col-sm-6 mb-2">
-                                    <i class="fa fa-file-text-o pr-2"></i><span class="project-label">Project </span>: <span class="ft-wt-600 uppercase"><?php echo htmlspecialchars($portfolio['projectName']); ?></span>
-                                </div>
-                                <div class="col-12 col-sm-6 mb-2">
-                                    <i class="fa fa-user-o pr-2"></i><span class="project-label">Client </span>: <span class="ft-wt-600 uppercase"><?php echo htmlspecialchars($portfolio['clientName']); ?></span>
-                                </div>
-                                <div class="col-12 col-sm-6 mb-2">
-                                    <i class="fa fa-code pr-2"></i><span class="project-label">Technologies </span>: <span class="ft-wt-600 uppercase"><?php echo htmlspecialchars($portfolio['inputTechnologies']); ?></span>
-                                </div>
-                            </div>
-                        </figcaption>
-                        <img style="width: 100%; height: 300px; object-fit: cover;" src="portfolio_uploads/<?php echo htmlspecialchars($portfolio['portfolioImage']); ?>" alt="Portfolio Image" />
-                    </figure>
+
+        <!-- Pagination Starts -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?php if ($page > 1): ?>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
                 </li>
-                <!-- Portfolio Item Detail Ends -->
-                <?php 
-                    }
-                }
-                ?>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
+                    <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                </li>
+                <?php endfor; ?>
+
+                <?php if ($page < $totalPages): ?>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo $page + 1; ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <?php endif; ?>
             </ul>
-            <!-- Portfolio Navigation Starts -->
-            <nav>
-                <span class="icon nav-prev"><img src="img/projects/navigation/left-arrow.png" alt="previous"></span>
-                <span class="icon nav-next"><img src="img/projects/navigation/right-arrow.png" alt="next"></span>
-                <span class="nav-close"><img src="img/projects/navigation/close-button.png" alt="close"> </span>
-            </nav>
-            <!-- Portfolio Navigation Ends -->
-        </section>
+        </nav>
+        <!-- Pagination Ends -->
     </div>
 </section>
+
 
 <!-- Main Content Ends -->
 
