@@ -116,7 +116,34 @@ if (isset($_POST['blog_submit'])) {
     <script src="js/modernizr.custom.js"></script>
 
     <style>
-        
+ 
+ 
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .form-row .form-field {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-row .form-field:last-child {
+            margin-right: 0;
+        }
+        input, select {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+      
+
         /* .active-button {
             font-weight: bold;
             color: #007bff;
@@ -127,20 +154,6 @@ if (isset($_POST['blog_submit'])) {
     margin: 0 auto;
 }
 
-.nav-tabs .nav-item {
-    flex: 1;
-    text-align: center;
-}
-
-.nav-tabs .nav-link {
-    font-size: 16px;
-    padding: 10px;
-}
-
-.nav-link.active {
-    background-color: #007bff;
-    color: white;
-}
 
 .tab-content {
     margin-top: 30px;
@@ -157,7 +170,7 @@ textarea.form-control {
 .tag {
     background: #252525;
     border: 1px solid #111;
-    color:#838080;
+color:    #838080;
     border-radius: 15px;
     padding: 5px 10px;
     font-size: 0.875em;
@@ -302,77 +315,70 @@ textarea.form-control {
     </section>
 
 
-    <section class="flex-container container">
-    <!-- Navigation Tabs -->
-    <ul class="nav nav-tabs" id="navTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="portfolio-tab" data-bs-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio" aria-selected="true">Portfolio</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="blog-tab" data-bs-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="false">Blog</a>
-        </li>
-        <!-- <li>            
-            <button type="submit" name="logout_button" class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>        
-    </li> -->
-    </ul></section>
-    <section class="tabs container">
+    <section class="container mt-2 w-10">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs " id="navTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="portfolio-tab" data-bs-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio" aria-selected="true">Portfolio</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="blog-tab" data-bs-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="false">Blog</a>
+                </li>
+            </ul>
 
-    <!-- Tab Contents -->
-    <div class="tab-content" id="navTabContent">
-    <!-- Portfolio Content -->
-    <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
-        <!-- Portfolio Form -->
-            <form method="POST" action="" enctype="multipart/form-data" class="form mt-3" id="portfolioForm">
-        <div class="mb-3">
-            <label for="portfolioName" class="form-label">Portfolio Name</label>
-            <input type="text" class="form-control" id="portfolioName" name="portfolioName" required>
-        </div>
-        <div class="mb-3">
-            <label for="clientName" class="form-label">Client Name</label>
-            <input type="text" class="form-control" id="clientName" name="clientName" required>
-        </div>
-        <div class="mb-3">
-                    <label for="Technologies" class="form-label">Technologies</label>
-                    <div class="Technologies-container" id="TechnologiesContainer">
-                        <input type="hidden" name="inputTechnologies" id="hiddenTechnologies">
-                        <input type="text" name="Technologies" class="tag-input" id="tagInput" placeholder="Type and press space">
-                    </div>
-                    <span class="error" id="errorTechnologies"></span>
+            <!-- Tab Contents -->
+            <div class="tab-content mt-3" id="navTabContent">
+                <!-- Portfolio Content -->
+                <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
+                    <form method="POST" action="" enctype="multipart/form-data" class="form row gx-4">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" id="portfolioName" name="portfolioName" placeholder="Enter Portfolio Name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Enter Client Name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div id="TechnologiesContainer">
+                                <input type="hidden" name="inputTechnologies" id="hiddenTechnologies">
+                                <input type="text" class="form-control" id="tagInput" placeholder="Type and press space">
+                            </div>
+                            <span class="error text-danger" id="errorTechnologies"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="file" class="form-control" id="image" name="image" placeholder="Upload Portfolio Image" required>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" name="portfolio_submit" class="btn btn-primary btn-form ">Submit Portfolio</button>
+                        </div>
+                    </form>
                 </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">Portfolio Project Image</label>
-            <input type="file" name="image" class="form-control" id="image" required>
+
+                <!-- Blog Content -->
+                <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
+                    <form method="POST" action="" enctype="multipart/form-data" class="form row gx-4">
+                        <div class="col-md-6 mb-3">
+                            <input type="file" class="form-control" id="blogImage" name="blogImage" placeholder="Upload Blog Image" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control " id="blogTitle" name="blogTitle" placeholder="Enter Blog Title" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <textarea class="form-control" id="blogContent" name="blogContent" placeholder="Write your blog here" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" name="blog_submit" class="btn btn-primary btn-form">Submit Blog</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="submit" name="portfolio_submit" class="btn btn-primary btn-form">Submit Portfolio</button>
-    </form>
     </div>
-
-    <!-- Blog Content -->
-    <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
-        <!-- Blog Form -->
-        <form method="POST" action="" enctype="multipart/form-data" class="blog-form form mt-3" id="blogForm">
-    <div class="mb-3">
-        <label for="image" class="form-label">Blog Image</label>
-        <input type="file" class="form-control" id="inputGroupFile02 image" name="blogImage">
-        <span class="error" id="errormessage"></span>
-    </div>
-    <div class="mb-3">
-        <label for="blogTitle" class="form-label">Blog Title</label>
-        <input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="Enter Blog Title" required>
-    </div>
-  
-    <div class="mb-3">
-        <label for="blogContent" class="form-label">Content</label>
-        <textarea class="form-control" name="blogContent" id="blogContent" placeholder="Write your blog here" required></textarea>
-    </div>
-    <button type="submit" name="blog_submit" class="btn btn-primary btn-form">Submit Blog</button>
-</form>
-    </div>
-</div>
-
 </section>
 
- <script>
+
+<script>
     document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.nav-link');
     const tabContents = document.querySelectorAll('.tab-pane');
