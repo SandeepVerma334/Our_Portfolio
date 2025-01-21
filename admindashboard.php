@@ -1,11 +1,26 @@
 <?php
 session_start();
+// print_r($_SESSION);
+
+
 include("config.php");
 if (empty($_SESSION['email']) || empty($_SESSION['user_id']) || empty($_SESSION['role'])) {    
     header("Location: login.php");
     exit();
 }
+ // Save the user's name from the database during login
+ if (!isset($_SESSION['name'])) {
+    $userId = $_SESSION['id']; // Assuming user ID is stored in the session
+    $query = "SELECT name FROM users WHERE id = '$userId'"; // Adjust table and column names
+    $result = mysqli_query($conn, $query);
 
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+        $_SESSION['name'] = $user['name']; // Store the name in session
+    } else {
+        $_SESSION['name'] = "Guest"; // Default if no name found
+    }
+}
 if (isset($_POST['portfolio_submit'])) {    
     $projectName = $_POST['portfolioName'];
     $clientName = $_POST['clientName'];
@@ -37,6 +52,11 @@ if (isset($_POST['blog_submit'])) {
     $targetFile = $targetDir . basename($_FILES["blogImage"]["name"]);
     move_uploaded_file($_FILES["blogImage"]["tmp_name"], $targetFile);
 
+   
+    
+  
+   
+
     // Inserting into the blog table
     $sql = "INSERT INTO blog (blogTitle, blogContent, blogImage, createdAt) 
             VALUES ('$blogTitle', '$blogContent', '$image', NOW())";
@@ -47,6 +67,9 @@ if (isset($_POST['blog_submit'])) {
         echo "Error: " . mysqli_error($conn);
     }
 }
+     // Check if there's any data in session and use it to populate the form fields
+    
+  
 
 ?>
 
@@ -93,6 +116,7 @@ if (isset($_POST['blog_submit'])) {
     <script src="js/modernizr.custom.js"></script>
 
     <style>
+        
         /* .active-button {
             font-weight: bold;
             color: #007bff;
@@ -128,6 +152,28 @@ if (isset($_POST['blog_submit'])) {
 
 textarea.form-control {
     height: 100px;
+}
+
+.tag {
+    background: #252525;
+    border: 1px solid #111;
+    color:#838080;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 0.875em;
+    display: flex;
+    width:65px;
+    margin-bottom:3px;
+    margin-left:400px;
+    align-items: center;
+}
+.tag button {
+    background: none;
+    border: none;
+    font-size: 1em;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #fff;
 }
 
     </style>
@@ -216,11 +262,16 @@ textarea.form-control {
             </li>
             <li class="icon-box">
                 <i class="fa fa-comments"></i>
-                <a href="blog.html">
+                <a href="blog.php">
                     <h2>Blog</h2>
                 </a>
             </li>
-
+            <li class="icon-box">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a href="logout.php">
+                    <h2>Logout</h2>
+                </a>
+            </li>
 
 
         </ul>
@@ -237,9 +288,8 @@ textarea.form-control {
                     <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                     <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                     <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                    <li class="active"><a href="contact.html"><i
-                                class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                    <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>                    
+                    <li class="active"><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                    <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>                    
                 </ul>
             </div>
         </nav>
@@ -247,12 +297,12 @@ textarea.form-control {
     </header>
     <!-- Header Ends -->
     <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
-        <h1><span><?php echo $_SESSION['name']; ?></span></h1>
+        <h1><span><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8'); ?></span></h1>
         <span class="title-bg"><?php echo $_SESSION['role']; ?></span>
     </section>
 
 
-    <section class="flex-container">
+    <section class="flex-container container">
     <!-- Navigation Tabs -->
     <ul class="nav nav-tabs" id="navTabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -261,11 +311,11 @@ textarea.form-control {
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="blog-tab" data-bs-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="false">Blog</a>
         </li>
-        <li>            
+        <!-- <li>            
             <button type="submit" name="logout_button" class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>        
-    </li>
+    </li> -->
     </ul></section>
-    <section>
+    <section class="tabs container">
 
     <!-- Tab Contents -->
     <div class="tab-content" id="navTabContent">

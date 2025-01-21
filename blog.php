@@ -1,18 +1,6 @@
 ﻿
 
 
-<?php
-// Start session
-session_start();
-print_r($_SESSION['blog_data']);
-
-// Include database connection
-include("config.php");
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -160,134 +148,52 @@ include("config.php");
     <span class="title-bg">posts</span>
 </section>
 <!-- Page Title Ends -->
-<!-- Main Content Starts -->
+<?php 
+
+include("config.php");
+
+$blogQuery = "SELECT * FROM blog";
+$blogResult = mysqli_query($conn, $blogQuery);
+?>
+
 <section class="main-content revealator-slideup revealator-once revealator-delay1">
     <div class="container">
         <!-- Articles Starts -->
         <div class="row">
+            <?php 
+            if ($blogResult && mysqli_num_rows($blogResult) > 0) {
+                while ($blog = mysqli_fetch_assoc($blogResult)) {
+            ?>
             <!-- Article Starts -->
             <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
                 <article class="post-container">
                     <div class="post-thumb">
                         <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/entertainment.png" class="img-fluid" alt="Entertainment Blog">
+                            <img src="Blog_uploads/<?php echo htmlspecialchars($blog['blogImage']); ?>"  class="img-fluid" style="width: 400px; height: 200px; object-fit: cover;" alt="<?php echo htmlspecialchars($blog['blogTitle']); ?>">
                         </a>
                     </div>
                     <div class="post-content">
                         <div class="entry-header">
-                            <h3><a href="#">The Magic of Entertainment Websites</a></h3>
+                            <h3><a href="#"><?php echo htmlspecialchars($blog['blogTitle']); ?></a></h3>
                         </div>
                         <div class="entry-content open-sans-font">
-                            <p>Discover how modern entertainment websites engage users with dynamic content and vibrant designs to provide seamless experiences.</p>
+                            <p><?php echo htmlspecialchars($blog['blogContent']); ?></p>
                         </div>
                     </div>
                 </article>
             </div>
             <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/empire-ewf.png" class="img-fluid" alt="House Accessories Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Innovative Ideas for House Accessories Websites</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Learn how house accessories websites blend functionality and aesthetics to cater to modern homeowners.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/seafood.png" class="img-fluid" alt="Seafood Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Building Trustworthy Seafood Websites</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Explore how seafood websites ensure freshness, trust, and convenience for customers looking for premium products.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/velozoo.png" class="img-fluid" alt="Bikes Accessories Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Crafting Modern Bike & Accessory Websites</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Unveil the strategies behind creating engaging bike and accessory websites that boost sales and brand loyalty.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/ruffy.png" class="img-fluid" alt="Pet Products Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Elevating Pet Product Websites for Happy Pets</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Discover how pet product websites cater to owners by providing easy navigation, quality items, and valuable tips.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
-
-            <!-- Article Starts -->
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
-                <article class="post-container">
-                    <div class="post-thumb">
-                        <a href="#" class="d-block position-relative overflow-hidden">
-                            <img src="img/projects/food.png" class="img-fluid" alt="Food Store Blog">
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <div class="entry-header">
-                            <h3><a href="#">Online Food Stores: Simplifying Culinary Needs</a></h3>
-                        </div>
-                        <div class="entry-content open-sans-font">
-                            <p>Explore how online food stores offer convenience, variety, and freshness in a few clicks to busy food lovers.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- Article Ends -->
+            <?php 
+                }
+            } else {
+                echo "<p>No blogs found.</p>";
+            }
+            ?>
         </div>
         <!-- Articles Ends -->
     </div>
 </section>
+
 
 
 
