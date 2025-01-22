@@ -1916,7 +1916,7 @@ select#language {
 .nav-tabs {
   border-bottom: none; /* Adjust thickness and color */
   border-radius: 2px ;
-  
+ 
   
     text-decoration: none;
     margin-top: -9px;
@@ -1924,21 +1924,42 @@ select#language {
     gap: 35px;
 }
 
-
-
-.nav-tabs .nav-link {
-  border: 1px solid transparent;
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
-  border-bottom-left-radius: .25rem;
-  border-bottom-right-radius: .25rem;
-}
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-  color: #495057;
+  color: #000000;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
   border-radius: 25px;
 }
+.nav-tabs a{
+  color: #FFF;
+}
  
+
+
+
+
+
+
+
+  /* Custom Styling for File Input */
+  #image::-webkit-file-upload-button {
+    visibility: hidden;
+}
+#image::before {
+    content: 'Choose File';
+    display: inline-block;
+    /* background: #68acf5; */
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#image:hover::before {
+    background: #0056b3;
+}
+#image:active::before {
+    background: #003f7f;
+}
 
 /*** admindashboard styling ends ***/

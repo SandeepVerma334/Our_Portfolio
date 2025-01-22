@@ -150,7 +150,7 @@ if (isset($_POST['blog_submit'])) {
             border-bottom: 2px solid #007bff;
         } */
         .flex-container {
-    max-width: 800px;
+    max-width: 400px;
     margin: 0 auto;
 }
 
@@ -347,7 +347,7 @@ color:    #838080;
                             <span class="error text-danger" id="errorTechnologies"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input type="file" class="form-control" id="image" name="image" placeholder="Upload Portfolio Image" required>
+                            <input type="file" class="form-control" id="image" name="image"  required>
                         </div>
                         <div class="col-12">
                             <button type="submit" name="portfolio_submit" class="btn btn-primary btn-form ">Submit Portfolio</button>
