@@ -13,7 +13,7 @@ body.light #menu li.active a,
 .portfolio .slideshow figcaption h3,
 .portfolio .slideshow a,
 .portfolio .grid figure:hover figcaption,
-.blog-post .meta i{
+.blog-post .meta i,.page-item.active .page-link{
 	color: #8a2be2;
 }
 .about .resume-box .icon,
@@ -31,7 +31,7 @@ body.light .header ul.icon-menu li.icon-box.active, body.light  .header ul.icon-
 .header .icon-box h2,
 .home .color-block,
 .title-section hr,
-.portfolio .slideshow .carousel-indicators li.active {
+.portfolio .slideshow .carousel-indicators li.active,.page-item.active .page-link {
 	background-color: #8a2be2;
 }
 .contact .contactform input[type=text]:focus,
@@ -43,7 +43,7 @@ body.light.contact .contactform textarea:focus,
 .blog .page-item.active .page-link,
 .blog .page-link:hover,
 body.light.blog .page-item.active .page-link,
-body.light.blog .page-link:hover{
+body.light.blog .page-link:hover,.page-item.active .page-link{
 	border: 1px solid #8a2be2;
 }
 .blog .post-thumb {

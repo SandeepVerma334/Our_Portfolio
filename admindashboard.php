@@ -170,15 +170,19 @@ textarea.form-control {
 .tag {
     background: #252525;
     border: 1px solid #111;
-color:    #838080;
+    color: #838080;
     border-radius: 15px;
     padding: 5px 10px;
     font-size: 0.875em;
-    display: flex;
-    width:65px;
-    margin-bottom:3px;
-    margin-left:400px;
+    display: flex !important;
+    width: max-content;
+    margin-bottom: 3px;
+    margin-left: .6rem;
     align-items: center;
+    justify-content: center;
+    float: left;
+    position: relative;
+    left: 25px !important;
 }
 .tag button {
     background: none;
@@ -187,6 +191,22 @@ color:    #838080;
     margin-left: 5px;
     cursor: pointer;
     color: #fff;
+}
+
+#blogImage,#image {
+    background-color: #252525;
+    color: #6c757d;
+}
+
+/* Change the color of the 'No file chosen' text to red */
+#blogImage::-webkit-file-upload-button,#image::-webkit-file-upload-button {
+    color: #6c757d;
+    background-color: transparent;
+}
+
+/* For Firefox */
+#blogImage::-moz-file-upload-button,#image::-webkit-file-upload-button {
+    color: #6c757d;
 }
 
     </style>
@@ -364,7 +384,7 @@ color:    #838080;
                         <div class="col-md-6 mb-3">
                             <input type="text" class="form-control " id="blogTitle" name="blogTitle" placeholder="Enter Blog Title" required>
                         </div>
-                        <div class="col-12 mb-3">
+                        <div class="col-md-12 mb-3">
                             <textarea class="form-control" id="blogContent" name="blogContent" placeholder="Write your blog here" required></textarea>
                         </div>
                         <div class="col-12">

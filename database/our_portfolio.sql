@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2025 at 05:14 PM
+-- Generation Time: Jan 21, 2025 at 06:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,7 +45,8 @@ INSERT INTO `blog` (`id`, `blogTitle`, `blogContent`, `blogImage`, `createdAt`) 
 (6, 'Building Trustworthy Seafood Websites', 'Explore how seafood websites ensure freshness, trust, and convenience for customers looking for premium products.', 'seafood.png', '2025-01-21 15:58:04'),
 (7, 'Crafting Modern Bike & Accessory Websites', 'Unveil the strategies behind creating engaging bike and accessory websites that boost sales and brand loyalty.', 'velozoo.png', '2025-01-21 15:58:34'),
 (8, 'Elevating Pet Product Websites for Happy Pets', 'Discover how pet product websites cater to owners by providing easy navigation, quality items, and valuable tips.', 'ruffy.png', '2025-01-21 16:00:15'),
-(9, 'Online Food Stores: Simplifying Culinary Needs', 'Explore how online food stores offer convenience, variety, and freshness in a few clicks to busy food lovers.', 'react-app.png', '2025-01-21 16:02:24');
+(9, 'Online Food Stores: Simplifying Culinary Needs', 'Explore how online food stores offer convenience, variety, and freshness in a few clicks to busy food lovers.', 'react-app.png', '2025-01-21 16:02:24'),
+(10, 'Online Food Stores: Simplifying Culinary Needs', 'Explore how online food stores offer convenience, variety, and freshness in a few clicks to busy food lovers.', 'react-app.png', '2025-01-21 16:21:47');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,27 @@ INSERT INTO `portfolio` (`id`, `projectName`, `clientName`, `inputTechnologies`,
 (1, '', 'test', 'html,css,bootstrap', 'Online Grocery Store.png', '2025-01-20 18:10:57'),
 (2, 'test', 'test', 'html,css,bootstrap', 'Online Grocery Store.png', '2025-01-20 18:12:06'),
 (3, 'test', 'test', 'html,css,bootstrap', 'Online Grocery Store.png', '2025-01-20 18:17:56'),
-(4, 'Whilemina Burton', 'Randall Raymond', 'html,css,php', 'ewf.png', '2025-01-21 12:38:49');
+(4, 'Whilemina Burton', 'Randall Raymond', 'html,css,php', 'ewf.png', '2025-01-21 12:38:49'),
+(5, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:06:01'),
+(6, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:04'),
+(7, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:07'),
+(8, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:22'),
+(9, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:23'),
+(10, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:24'),
+(11, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:25'),
+(12, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:26'),
+(13, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:27'),
+(14, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:28'),
+(15, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:29'),
+(16, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:30'),
+(17, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:31'),
+(18, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:32'),
+(19, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:33'),
+(20, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:34'),
+(21, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:35'),
+(22, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:35'),
+(23, 'test', 'test', 'djkljfslf,sjfsflks,klsjflksjflksjflksl,lksjflkajlsdjf,lksjflksjflsjdf,lksjflkasjfkljaflsajlfd,ksd,sjf,j', 'project-2.jpg', '2025-01-21 17:10:36'),
+(24, 'this is a test title for portfolio', 'sandeep kumar', 'html,css,bootstrap,php,wordpress', 'digital.png', '2025-01-21 17:11:25');
 
 -- --------------------------------------------------------
 
@@ -126,13 +147,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user`
