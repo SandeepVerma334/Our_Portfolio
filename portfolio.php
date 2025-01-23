@@ -162,7 +162,7 @@ session_start();
         </li>
         <li class="icon-box">
             <i class="fa fa-comments"></i>
-            <a href="blog.html">
+            <a href="blog.php">
                 <h2>Blog</h2>
             </a>
         </li>
@@ -181,7 +181,7 @@ session_start();
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li class="active"><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
             </ul>
         </div>
     </nav>
