@@ -1868,6 +1868,7 @@ select#budget {
   margin-left: 35px;
   height: 55px;
 }
+
 .form label{
   margin-left: 400px;
   /* display: none; */
@@ -1962,4 +1963,45 @@ select#language {
     background: #003f7f;
 }
 
+
+
+
 /*** admindashboard styling ends ***/
+/***upadte portfolio styling strat***/
+
+/* Style for inputs */
+/* Style for inputs */
+.project .update-form input[type=text],
+.project .update-form input[type=file],
+.project .update-form textarea {
+  border: 1px solid #111;
+  width: 100%; /* Full width for inputs inside columns */
+  background: #252525;
+  color: #fff;
+  padding: 11px 15px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  outline: none !important;
+  transition: 0.3s;
+  height: 55px;
+}
+
+/* Flexbox for rows */
+.project .update-form .form-row {
+  display: flex;
+  justify-content: space-between; /* Space between the two columns */
+  gap: 30px; /* Horizontal spacing between columns */
+  margin-bottom: 20px; /* Space between rows */
+}
+
+/* Each column takes 50% width */
+.project .update-form .form-column {
+  flex: 1; /* Ensures columns take equal space */
+}
+.form-column {
+  margin-top: 20px;
+}
+/* Popup Form Background */
+
+
+/***upadte portfolio styling ends ***/

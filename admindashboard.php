@@ -283,7 +283,7 @@ textarea.form-control {
             </li>
             <li class="icon-box">
                 <i class="fa fa-briefcase"></i>
-                <a href="portfolio.html">
+                <a href="portfolio.php">
                     <h2>Portfolio</h2>
                 </a>
             </li>
@@ -320,7 +320,7 @@ textarea.form-control {
                 <ul class="list-unstyled" id="menu">
                     <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                     <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
-                    <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+                    <li><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                     <li class="active"><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                     <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>                    
                 </ul>
@@ -384,10 +384,11 @@ textarea.form-control {
                         <div class="col-md-6 mb-3">
                             <input type="text" class="form-control " id="blogTitle" name="blogTitle" placeholder="Enter Blog Title" required>
                         </div>
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-6 mb-3">
                             <textarea class="form-control" id="blogContent" name="blogContent" placeholder="Write your blog here" required></textarea>
                         </div>
-                        <div class="col-12">
+                       
+                        <div class="col-md-6 mb-3">
                             <button type="submit" name="blog_submit" class="btn btn-primary btn-form">Submit Blog</button>
                         </div>
                     </form>

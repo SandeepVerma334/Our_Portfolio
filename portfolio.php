@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,12 +38,62 @@
     <link rel="alternate stylesheet" type="text/css" title="red" href="css/skins/red.css" />
     <link rel="alternate stylesheet" type="text/css" title="yellowgreen" href="css/skins/yellowgreen.css" />
     <link rel="stylesheet" type="text/css" href="css/styleswitcher.css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .update-button{
+            z-index: 999999 !important;
+        }
+        /* Popup form styling */
+.popup-form {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999999;
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 600px;
+  height:500px;
+  background-color: #111;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content h3 {
+  margin-bottom: 20px;
+}
+
+.popup-content .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;;
+}
+
+
+    </style>
 </head>
 
-<body class="portfolio">
+<body class="portfolio project">
 <!-- Live Style Switcher Starts - demo only -->
 <div id="switcher" class="">
     <div class="content-switcher">
@@ -100,7 +154,7 @@
         </li>
         <li class="icon-box active">
             <i class="fa fa-briefcase"></i>
-            <a href="portfolio.html">
+            <a href="portfolio.php">
                 <h2>Portfolio</h2>
             </a>
         </li>
@@ -129,7 +183,7 @@
             <ul class="list-unstyled" id="menu">
                 <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
-                <li class="active"><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+                <li class="active"><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                 <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
             </ul>
@@ -138,15 +192,49 @@
     <!-- Mobile Menu Ends -->
 </header>
 <!-- Header Ends -->
-<!-- Page Title Starts -->
+ <!-- Page Title Starts -->
 <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
     <h1>my <span>portfolio</span></h1>
     <span class="title-bg">works</span>
 </section>
-<!-- Page Title Ends -->
+<!-- Page Title Starts -->
+<!-- Update Portfolio Form (Hidden by Default) -->
+<div id="updatePortfolioPopup" class="popup-form update-form" style="display: none;">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h3 class="popup-title">Update Portfolio</h3>
+    <form id="updatePortfolioForm">
+      <input type="hidden" id="portfolioId" name="portfolioId">
+
+      <!-- Row 1 -->
+      <div class="form-row">
+        <div class="form-column">
+          <input type="text" id="projectName" name="projectName" placeholder="Project Name">
+        </div>
+        <div class="form-column">
+          <input type="text" id="clientName" name="clientName" placeholder="Client Name">
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="form-row">
+        <div class="form-column">
+          <input type="text" id="inputTechnologies" name="inputTechnologies" placeholder="Technologies">
+        </div>
+        <div class="form-column">
+          <input type="file" id="image" name="pImage" placeholder="Upload Image">
+        </div>
+      </div>
+
+      <button type="submit" name="portfolio_submit" class="btn btn-primary btnform ">save changes</button>
+    </form>
+  </div>
+</div>
 
 <?php
+
 include("config.php");
+// print_r($_SESSION);
 $resultsPerPage = 6;
 
 // Get the current page number from the URL, default to 1 if not set
@@ -172,10 +260,10 @@ $portfolioItems = [];
 if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
     while ($portfolio = mysqli_fetch_assoc($portfolioResult)) {
         $portfolioItems[] = $portfolio; // Store all portfolio items in an array
+        // print_r($portfolio);
     }
 }
 ?>
-
 <!-- Main Content Starts -->
 <section class="main-content text-center revealator-slideup revealator-once revealator-delay1">
     <div id="grid-gallery" class="container grid-gallery">
@@ -184,16 +272,17 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
             <ul class="row grid">
                 <!-- Portfolio Item Starts -->
                 <?php if (!empty($portfolioItems)) {
-                    foreach ($portfolioItems as $portfolio) { ?>
-                        <li>
-                            <figure>
-                                <img style="width: 400px; height: 200px; object-fit: cover;" src="portfolio_uploads/<?php echo htmlspecialchars($portfolio['portfolioImage']); ?>" alt="Portfolio Image for <?php echo htmlspecialchars($portfolio['projectName']); ?>" />
-                                <div><span><?php echo htmlspecialchars($portfolio['projectName']); ?></span></div>
-                            </figure>
-                        </li>
-                    <?php }
-                } ?>
+    foreach ($portfolioItems as $portfolio) { ?>
+        <li>
+            <figure>
+                <img style="width: 400px; height: 200px; object-fit: cover;" src="portfolio_uploads/<?php echo htmlspecialchars($portfolio['portfolioImage']); ?>" alt="Portfolio Image for <?php echo htmlspecialchars($portfolio['projectName']); ?>" />
+                <div><span><?php echo htmlspecialchars($portfolio['projectName']); ?></span></div>
+            </figure>           
+        </li>
+    <?php }
+} ?>
             </ul>
+            
         </section>
         <!-- Portfolio Grid Ends -->
  <!-- Pagination Starts -->
@@ -227,7 +316,9 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
         <section class="slideshow">
             <ul>
                 <?php if (!empty($portfolioItems)) {
-                    foreach ($portfolioItems as $portfolio) { ?>
+                    foreach ($portfolioItems as $portfolio) { 
+                        // print_r($portfolio);
+                        ?>
                         <!-- Portfolio Item Detail Starts -->
                         <li>
                             <figure>
@@ -237,7 +328,7 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
                                         <div class="col-12 col-sm-6 mb-2">
                                             <i class="fa fa-file-text-o pr-2"></i>
                                             <span class="project-label">Project: </span>
-                                            <span class="ft-wt-600 uppercase"><?php echo htmlspecialchars($portfolio['projectDescription'] ?? 'N/A'); ?></span>
+                                            <span class="ft-wt-600 uppercase"><?php echo htmlspecialchars($portfolio['projectName'] ?? 'N/A'); ?></span>
                                         </div>
                                         <div class="col-12 col-sm-6 mb-2">
                                             <i class="fa fa-user-o pr-2"></i>
@@ -249,9 +340,24 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
                                             <span class="project-label">Technologies: </span>
                                             <span class="ft-wt-600 uppercase"><?php echo htmlspecialchars($portfolio['inputTechnologies']); ?></span>
                                         </div>
+                                        <?php
+            // Check if 'role' is set in the session and if it equals 'admin'
+            if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {                                                            
+            ?>
+               <button type="button" name="update_portfolio" class="update-button btn btn-primary" 
+        data-bs-toggle="modal" 
+        data-bs-target="#updatePortfolioModal"
+        data-portfolio-id="<?php echo $portfolio['id']; ?>"
+        data-project-name="<?php echo htmlspecialchars($portfolio['projectName']); ?>"
+        data-client-name="<?php echo htmlspecialchars($portfolio['clientName']); ?>"
+        data-input-technologies="<?php echo htmlspecialchars($portfolio['inputTechnologies']); ?>">
+    Update Portfolio
+</button>
+
+            <?php } ?>
                                     </div>
                                 </figcaption>
-                                <img src="portfolio_uploads/<?php echo htmlspecialchars($portfolio['portfolioImage']); ?>" alt="Portfolio Image for <?php echo htmlspecialchars($portfolio['projectName']); ?>" />
+                                <img style="width: 100%; max-height: 300px; object-fit: cover;"  src="portfolio_uploads/<?php echo htmlspecialchars($portfolio['portfolioImage']); ?>" alt="Portfolio Image for <?php echo htmlspecialchars($portfolio['projectName']); ?>" />
                             </figure>
                         </li>
                     <?php }
@@ -269,8 +375,70 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
         </section>
     </div>
 </section>
+<script>
+ $(document).ready(function () {
+  // Open popup and populate data when the update button is clicked
+  $('.update-button').on('click', function () {
+    const portfolioId = $(this).data('portfolio-id');
+    const projectName = $(this).data('project-name');
+    const clientName = $(this).data('client-name');
+    const inputTechnologies = $(this).data('input-technologies');
+console.log(portfolioId + projectName + clientName + inputTechnologies);
+    // Populate form fields
+    $('#portfolioId').val(portfolioId);
+    $('#projectName').val(projectName);
+    $('#clientName').val(clientName);
+    $('#inputTechnologies').val(inputTechnologies);
 
+    // Show the popup
+    $('#updatePortfolioPopup').fadeIn();
+  });
+
+  // Close popup
+  window.closePopup = function () {
+    $('#updatePortfolioPopup').fadeOut();
+  };
+
+  // Handle form submission
+  $('#updatePortfolioForm').on('submit', function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    // Fetch form data
+    const formData = $(this).serialize();
+    console.log(formData); // Log form data to check it
+
+    // Send data via AJAX
+    $.ajax({
+        url: 'update_portfolio.php',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            console.log(response); // Log the response to debug
+
+            // Check for success or failure message from PHP
+            if (response.indexOf('success') !== -1) {
+                alert('Portfolio updated successfully!');
+                $('#updatePortfolioPopup').fadeOut();
+                location.reload();
+            } else {
+                alert('Failed to update portfolio: ' + response);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Error updating portfolio: ' + error);
+            alert('An error occurred while updating the portfolio.');
+        }
+    });
+});
+
+
+});
+
+
+
+    </script>
 <!-- Main Content Ends -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 <!-- Template JS Files -->
 <script src="js/jquery-3.5.0.min.js"></script>
