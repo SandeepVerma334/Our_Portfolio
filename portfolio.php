@@ -260,10 +260,10 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
 }
 ?>
 <!-- Page Title Starts -->
-<!-- <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
+<section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
     <h1>my <span>portfolio</span></h1>
     <span class="title-bg">works</span>
-</section> -->
+</section>
 <!-- Main Content Starts -->
 <section class="main-content text-center revealator-slideup revealator-once revealator-delay1">
     <div id="grid-gallery" class="container grid-gallery">
