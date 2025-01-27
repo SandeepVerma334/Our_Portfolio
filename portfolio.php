@@ -69,7 +69,9 @@ session_start();
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
-  width: 400px;
+  width: 600px;
+  height:500px;
+  background-color: #111;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -84,12 +86,14 @@ session_start();
   cursor: pointer;
   font-size: 20px;
   color: #333;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;;
 }
+
 
     </style>
 </head>
 
-<body class="portfolio">
+<body class="portfolio project">
 <!-- Live Style Switcher Starts - demo only -->
 <div id="switcher" class="">
     <div class="content-switcher">
@@ -162,7 +166,7 @@ session_start();
         </li>
         <li class="icon-box">
             <i class="fa fa-comments"></i>
-            <a href="blog.php">
+            <a href="blog.html">
                 <h2>Blog</h2>
             </a>
         </li>
@@ -181,7 +185,7 @@ session_start();
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li class="active"><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
             </ul>
         </div>
     </nav>
@@ -189,39 +193,38 @@ session_start();
 </header>
 <!-- Header Ends -->
 <!-- Page Title Starts -->
-<section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
-    <h1>my <span>portfolio</span></h1>
-    <span class="title-bg">works</span>
-</section>
-<!-- Page Title Ends -->
 <!-- Update Portfolio Form (Hidden by Default) -->
-<div id="updatePortfolioPopup" class="popup-form" style="display: none;">
+<div id="updatePortfolioPopup" class="popup-form update-form" style="display: none;">
   <div class="popup-content">
     <span class="close-btn" onclick="closePopup()">&times;</span>
-    <h3>Update Portfolio</h3>
+    <h3 class="popup-title">Update Portfolio</h3>
     <form id="updatePortfolioForm">
       <input type="hidden" id="portfolioId" name="portfolioId">
-      <div class="mb-3">
-        <label for="projectName" class="form-label">Project Name</label>
-        <input type="text" id="projectName" name="projectName" >
+
+      <!-- Row 1 -->
+      <div class="form-row">
+        <div class="form-column">
+          <input type="text" id="projectName" name="projectName" placeholder="Project Name">
+        </div>
+        <div class="form-column">
+          <input type="text" id="clientName" name="clientName" placeholder="Client Name">
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="clientName" class="form-label">Client Name</label>
-        <input type="text" id="clientName" name="clientName" >
+
+      <!-- Row 2 -->
+      <div class="form-row">
+        <div class="form-column">
+          <input type="text" id="inputTechnologies" name="inputTechnologies" placeholder="Technologies">
+        </div>
+        <div class="form-column">
+          <input type="file" id="image" name="pImage" placeholder="Upload Image">
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="inputTechnologies" class="form-label">Technologies</label>
-        <input type="text" id="inputTechnologies" name="inputTechnologies" >
-      </div>
-      <div class="mb-3">
-        <label for="image" class="form-label">Image</label>
-        <input type="file" id="image" name="pImage" id="pImage">
-      </div>
-      <button type="submit">Save Changes</button>
+
+      <button type="submit" name="portfolio_submit" class="btn btn-primary btnform ">save changes</button>
     </form>
   </div>
 </div>
-
 
 <?php
 
@@ -256,6 +259,11 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
     }
 }
 ?>
+<!-- Page Title Starts -->
+<!-- <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
+    <h1>my <span>portfolio</span></h1>
+    <span class="title-bg">works</span>
+</section> -->
 <!-- Main Content Starts -->
 <section class="main-content text-center revealator-slideup revealator-once revealator-delay1">
     <div id="grid-gallery" class="container grid-gallery">

@@ -116,7 +116,7 @@
         </li>
         <li class="icon-box active">
             <i class="fa fa-comments"></i>
-            <a href="blog.php">
+            <a href="blog.html">
                 <h2>Blog</h2>
             </a>
         </li>
@@ -135,7 +135,7 @@
                 <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li class="active"><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li class="active"><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
             </ul>
         </div>
     </nav>
