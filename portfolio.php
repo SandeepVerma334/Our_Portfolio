@@ -248,7 +248,7 @@ $totalItems = $totalRow['total'];
 // Calculate the total number of pages
 $totalPages = ceil($totalItems / $resultsPerPage);
 // Fetch the portfolio items for the current page
-$portfolioQuery = "SELECT * FROM portfolio LIMIT $startLimit, $resultsPerPage";
+$portfolioQuery = "SELECT * FROM portfolio ORDER BY id DESC LIMIT $startLimit, $resultsPerPage";
 $portfolioResult = mysqli_query($conn, $portfolioQuery);
 
 $portfolioItems = [];
@@ -350,7 +350,8 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
         data-portfolio-id="<?php echo $portfolio['id']; ?>"
         data-project-name="<?php echo htmlspecialchars($portfolio['projectName']); ?>"
         data-client-name="<?php echo htmlspecialchars($portfolio['clientName']); ?>"
-        data-input-technologies="<?php echo htmlspecialchars($portfolio['inputTechnologies']); ?>">
+        data-input-technologies="<?php echo htmlspecialchars($portfolio['inputTechnologies']); ?>"
+        data-protofolio-image="<?php echo htmlspecialchars($portfolio['portfolioImage']); ?>">
     Update Portfolio
 </button>
 
@@ -383,12 +384,14 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
     const projectName = $(this).data('project-name');
     const clientName = $(this).data('client-name');
     const inputTechnologies = $(this).data('input-technologies');
+    const portfolioImage = $(this).data('protofolio-image');
 console.log(portfolioId + projectName + clientName + inputTechnologies);
     // Populate form fields
     $('#portfolioId').val(portfolioId);
     $('#projectName').val(projectName);
     $('#clientName').val(clientName);
     $('#inputTechnologies').val(inputTechnologies);
+    $('#portfolioImage').val(portfolioImage);
 
     // Show the popup
     $('#updatePortfolioPopup').fadeIn();
