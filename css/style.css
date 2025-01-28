@@ -2005,3 +2005,93 @@ select#language {
 
 
 /***upadte portfolio styling ends ***/
+/* about icon styling start */
+
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-list li {
+  display: flex; /* Align icon and content horizontally */
+  align-items: center; /* Vertically align icon and text */
+  margin-bottom: 20px; /* Space between list items */
+}
+
+.about-list .icon {
+  color: #000; /* Black color for the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px; /* Rounded corners for icon container */
+  margin-right: 15px; /* Space between icon and text */
+  font-size: 33px; /* Icon size */
+}
+.fa-child:before {
+  content: "\f1ae";
+  font-size: 40px;
+}
+
+.about-list .content {
+  display: flex;
+  flex-direction: column; /* Stack title and value vertically */
+
+}
+
+.about-list .title {
+  font-size: 14px; /* Smaller font for the title */
+  color: #fff; /* White color for the title */
+  text-transform: uppercase; /* Uppercase titles */
+  margin: 0; /* Remove default margins */
+  
+}
+.about .about-list .title {
+  opacity: .8;
+  text-transform: capitalize;
+  font-size: 12px;
+}
+.about .about-list .value {
+
+  font-size: 12px;
+}
+.personal-info .icon i{
+  font-size :33px;
+}
+.icon-list {
+  display: flex; /* Align all items in a single row */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px; /* Space between icons */
+  justify-content: center; /* Center align the items */
+}
+
+.icon-link {
+  display: flex; /* Icon inside flex container for consistent alignment */
+  align-items: center; /* Center align the icon vertically */
+  justify-content: center; /* Center align the icon horizontally */
+  width: 50px; /* Set width for icons */
+  height: 50px; /* Set height for icons */
+  /* Background color for the icon link */
+  border-radius: 50%; /* Make icons circular */
+  text-decoration: none; /* Remove underline */
+  color: #ffa500; /* Icon color */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.icon-link i {
+  font-size: 33px; /* Icon size */
+}
+
+
+
+
+.about-list .value {
+  font-size: 16px; /* Larger font for the value */
+  color: #fff; /* White color for the value */
+  margin: 0; /* Remove default margins */
+}
