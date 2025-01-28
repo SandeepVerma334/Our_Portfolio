@@ -197,6 +197,7 @@ $blogResult = mysqli_query($conn, $blogQuery);
 
 
 
+
 <!-- Template JS Files -->
 <script src="js/jquery-3.5.0.min.js"></script>
 <script src="js/styleswitcher.js"></script>

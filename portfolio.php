@@ -60,7 +60,10 @@ session_start();
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 999999;
 }
-
+.delete-button{
+    margin-left:313px;
+    margin-top: 10px;
+}
 .popup-content {
   position: absolute;
   top: 50%;
@@ -352,7 +355,7 @@ if ($portfolioResult && mysqli_num_rows($portfolioResult) > 0) {
         data-client-name="<?php echo htmlspecialchars($portfolio['clientName']); ?>"
         data-input-technologies="<?php echo htmlspecialchars($portfolio['inputTechnologies']); ?>">
     Update Portfolio
-</button>
+</button><button class="delete-button btn btn-danger" data-portfolio-id="<?php echo $portfolio['id']; ?>">delete</button>
 
             <?php } ?>
                                     </div>
