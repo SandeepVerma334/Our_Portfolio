@@ -2086,7 +2086,7 @@ select#language {
 .icon-link i {
   font-size: 23px; /* Icon size */
   color:#fff;
-  background-color:#2b2a2a ;
+  background-color:transparent ;
 }
 
 
