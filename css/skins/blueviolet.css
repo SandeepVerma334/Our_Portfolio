@@ -3,7 +3,7 @@
 ====================================================================== */
 
 .home h1,
-.icon-link,
+
 .about-list .icon,
 .about .box-stats h3,
 .title-section h1 span,
@@ -19,6 +19,7 @@ body.light #menu li.active a,
 	color: #8a2be2;
 }
 .about .resume-box .icon,
+.icon-link:hover,
 .contact ul.social li a:hover,
 body.light.contact ul.social li a:hover,
 .preloader .loader,

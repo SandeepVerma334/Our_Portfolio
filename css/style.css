@@ -2079,12 +2079,14 @@ select#language {
   /* Background color for the icon link */
   border-radius: 50%; /* Make icons circular */
   text-decoration: none; /* Remove underline */
-  color: #ffa500; /* Icon color */
+ background-color: #2b2a2a;
   transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .icon-link i {
-  font-size: 33px; /* Icon size */
+  font-size: 23px; /* Icon size */
+  color:#fff;
+  background-color:#2b2a2a ;
 }
 
 

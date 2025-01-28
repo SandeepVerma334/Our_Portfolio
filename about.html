@@ -44,6 +44,31 @@
 
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
+    <style>
+ /* Reduce the space between <li> elements */
+.about-list li {
+  margin-bottom: -2px; /* Adjust this value to control spacing */
+  padding: 0; /* Remove unnecessary padding if any */
+}
+
+/* Adjust the icon and content alignment */
+.about-list .icon {
+  margin-right: 10px; /* Reduce space between icon and text */
+}
+
+.about-list .content {
+  padding: 0;
+}
+
+/* Optional: Remove extra margins for <p> tags */
+.about-list p {
+  margin: 0; /* Remove default paragraph margins */
+}
+
+
+
+
+    </style>
 
 </head>
 
@@ -166,7 +191,8 @@
                     <div class="col-12 d-block d-sm-none">
                         <img src="img/img-mobile.jpg" class="img-fluid main-img-mobile" alt="my picture" />
                     </div>
-                    <div class="col-6">
+                    <div class="col-6" style="padding-left: 10px; padding-right: 10px;">
+
                         <ul class="about-list personal-info">
                             <li>
                               <span class="icon"><i class="fas fa-user position-absolute"></i></span>

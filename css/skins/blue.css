@@ -4,7 +4,7 @@
 
 .home h1,
 .about-list .icon,
-.icon-link,
+
 .about .box-stats h3,
 .title-section h1 span,
 #menu li.active a,
@@ -19,6 +19,7 @@ body.light #menu li.active a,
 	color: #4169e1;
 }
 .about .resume-box .icon,
+.icon-link:hover,
 .contact ul.social li a:hover,
 body.light.contact ul.social li a:hover,
 .preloader .loader,
