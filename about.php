@@ -1,3 +1,9 @@
+<?php 
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,8 +41,34 @@
     <link rel="alternate stylesheet" type="text/css" title="yellowgreen" href="css/skins/yellowgreen.css" />
     <link rel="stylesheet" type="text/css" href="css/styleswitcher.css" />
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
+    <style>
+ /* Reduce the space between <li> elements */
+.about-list li {
+  margin-bottom: -2px; /* Adjust this value to control spacing */
+  padding: 0; /* Remove unnecessary padding if any */
+}
+
+/* Adjust the icon and content alignment */
+.about-list .icon {
+  margin-right: 10px; /* Reduce space between icon and text */
+}
+
+.about-list .content {
+  padding: 0;
+}
+
+/* Optional: Remove extra margins for <p> tags */
+.about-list p {
+  margin: 0; /* Remove default paragraph margins */
+}
+
+
+
+
+    </style>
 </head>
 
 <body class="about">
@@ -89,13 +121,13 @@
     <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
         <li class="icon-box">
             <i class="fa fa-home"></i>
-            <a href="index.html">
+            <a href="index.php">
                 <h2>Home</h2>
             </a>
         </li>
         <li class="icon-box active">
             <i class="fa fa-user"></i>
-            <a href="about.html">
+            <a href="about.php">
                 <h2>About</h2>
             </a>
         </li>
@@ -113,10 +145,21 @@
         </li>
         <li class="icon-box">
             <i class="fa fa-comments"></i>
-            <a href="blog.html">
+            <a href="blog.php">
                 <h2>Blog</h2>
             </a>
         </li>
+        <?php 
+        // session_start();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+        <li class="icon-box">
+            <i class="fa fa-comments"></i>
+            <a href="our_details/our_details.php">
+                <h2>Admin</h2>
+            </a>
+        </li>
+        <?php } ?>
       
     </ul>
     <!-- Fixed Navigation Ends -->
@@ -128,11 +171,17 @@
             <span></span>
             <span></span>
             <ul class="list-unstyled" id="menu">
-                <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
-                <li class="active"><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a></li>
+                <li class="active"><a href="about.php"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <?php 
+        // session_start();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+                <li><a href="our_details/our_details.php"><i class="fa fa-comments"></i><span>Admin</span></a></li>
+<?php } ?>
             </ul>
         </div>
     </nav>
@@ -150,7 +199,7 @@
     <div class="container">
         <div class="row">
             <!-- Personal Info Starts -->
-            <div class="col-12 col-lg-5 col-xl-6">
+            <!-- <div class="col-12 col-lg-5 col-xl-6">
                 <div class="row">
                     <div class="col-12">
                         <h3 class="text-uppercase custom-title mb-0 ft-wt-600">personal infos</h3>
@@ -180,7 +229,112 @@
                     </div>
                    
                 </div>
+            </div> -->
+             <!-- Personal Info Starts -->
+             <div class="col-12 col-lg-5 col-xl-6">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="text-uppercase custom-title mb-0 ft-wt-600">personal infos</h3>
+                    </div> 
+                    <div class="col-12 d-block d-sm-none">
+                        <img src="img/img-mobile.jpg" class="img-fluid main-img-mobile" alt="my picture" />
+                    </div>
+                    <div class="col-6" style="padding-left: 10px; padding-right: 10px;">
+
+                        <ul class="about-list personal-info">
+                            <li>
+                              <span class="icon"><i class="fas fa-user position-absolute"></i></span>
+                              <div class="content">
+                                <p class="title">NAME</p>
+                                <p class="value">Sandeep Verma</p>
+                              </div>
+                            </li>
+                            <li>
+                                <span class="icon">
+                                    <i class="fa fa-child position-absolute fs-2" aria-hidden="true"></i>
+                                </span>
+                                  <div class="content">
+                                <p class="title">AGE</p>
+                                <p class="value">30 Years</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="icon"><i class="fas fa-flag position-absolute"></i></span>
+                              <div class="content">
+                                <p class="title">NATIONALITY</p>
+                                <p class="value">Indian</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="icon"><i class="fas fa-briefcase position-absolute"></i></span>
+                              <div class="content">
+                                <p class="title">STATUS</p>
+                                <p class="value">Available</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="icon"><i class="fa-solid fa-address-book position-absolute"></i></span>
+                              <div class="content">
+                                <p class="title">ADDRESS</p>
+                                <p class="value">Sri Ganganagar</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="icon"><i class="fas fa-phone position-absolute"></i></span>
+                              <div class="content">
+                                <p class="title">PHONE</p>
+                                <p class="value">+91-87692-58334</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="icon"><i class="fas fa-envelope position-absolute"></i></span>
+                              <div class="content">
+                                <p class="title">EMAIL</p>
+                                <p class="value">sandeepkumar941732 <br>@gmail.com</p>
+                              </div>
+                            </li>
+                          </ul>
+                          
+                    </div>
+                    <div class="col-6">
+                        <ul class="about-list  list-unstyled open-sans-font">
+                            <li>
+                                <span class="icon"><i class="fa fa-language fs-33"></i>
+                                </span>
+                                <div class="language">
+                                  <p class="title">LANGUAGES</p>
+                                  <p class="value">English, Hindi, Punjabi</p>
+                                </div>
+                              </li>
+                              <ul class="icon-list">
+                            <li>
+                              <a href="#" class="icon-link">
+                                <i class="fa fa-skype" aria-hidden="true"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="https://www.linkedin.com/in/sandeep-verma-04b35320a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="icon-link" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="https://github.com/SandeepVerma334" class="icon-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="https://upwork.com/SandeepVerma334" class="icon-link" target="_blank"style="margin-bottom: 17px;">
+                                <i class="fa-brands fa-upwork"></i>
+                              </a>
+                            </li>
+                          </ul>
+                          </ul>
+                          
+                    </div>
+                   
+                </div>
             </div>
+            <!-- Personal Info Ends from here -->
             <!-- Personal Info Ends -->
             <!-- Boxes Starts -->
             <div class="col-12 col-lg-7 col-xl-6 mt-5 mt-lg-0">

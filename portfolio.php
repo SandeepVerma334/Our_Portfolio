@@ -142,13 +142,13 @@ session_start();
     <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
         <li class="icon-box">
             <i class="fa fa-home"></i>
-            <a href="index.html">
+            <a href="index.php">
                 <h2>Home</h2>
             </a>
         </li>
         <li class="icon-box">
             <i class="fa fa-user"></i>
-            <a href="about.html">
+            <a href="about.php">
                 <h2>About</h2>
             </a>
         </li>
@@ -166,10 +166,21 @@ session_start();
         </li>
         <li class="icon-box">
             <i class="fa fa-comments"></i>
-            <a href="blog.html">
+            <a href="blog.php">
                 <h2>Blog</h2>
             </a>
         </li>
+        <?php 
+        // session_start();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="our_details/our_details.php">
+                <h2>Admin</h2>
+            </a>
+        </li>
+        <?php } ?>
        
     </ul>
     <!-- Fixed Navigation Ends -->
@@ -181,11 +192,17 @@ session_start();
             <span></span>
             <span></span>
             <ul class="list-unstyled" id="menu">
-                <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
-                <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a></li>
+                <li><a href="about.php"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li class="active"><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <?php 
+        // session_start();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+                <li><a href="our_details/our_details.php"><i class="fa fa-user"></i><span>Admin</span></a></li>
+<?php } ?>
             </ul>
         </div>
     </nav>
