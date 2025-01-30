@@ -13,6 +13,9 @@ $spreadsheetId = '1XiWJF-HVO25-HyFeaNPcRmJQQbblB9nPUOiOSDzVe54';
 $apiKey = 'AIzaSyDMYL2sn7PvWbmbF52oORsexY1Rop9v4ow';
 $range1 = 'Data_entry';
 $range2 = 'monthly_loss_profit';
+$range3 = 'Client_&_Projects_Details';
+$range4 = 'Investment';
+$range5 = 'Income';
 function fetchGoogleSheetData($spreadsheetId, $apiKey, $range) {
     $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$range}?key={$apiKey}";
     
@@ -29,6 +32,9 @@ function fetchGoogleSheetData($spreadsheetId, $apiKey, $range) {
 }
 $data1 = fetchGoogleSheetData($spreadsheetId, $apiKey, $range1); 
 $data2 = fetchGoogleSheetData($spreadsheetId, $apiKey, $range2); 
+$data3 = fetchGoogleSheetData($spreadsheetId, $apiKey, $range3); 
+$data4 = fetchGoogleSheetData($spreadsheetId, $apiKey, $range4); 
+$data5 = fetchGoogleSheetData($spreadsheetId, $apiKey, $range5); 
 
 function displayTable($data, $title, $className) {
     if ($data) {
@@ -82,6 +88,9 @@ function displayTable($data, $title, $className) {
     <?php
    displayTable($data1, 'Daily Basis Data Entry', 'daily-table');
    displayTable($data2, 'Monthly Loss and Profit', 'monthly-table');
+   displayTable($data3, 'Client_&_Projects_Details', 'Client_&_Projects_Details');
+   displayTable($data4, 'Investment', 'Investment');
+   displayTable($data5, 'Income', 'Income');
 }
     ?>
 </body>
