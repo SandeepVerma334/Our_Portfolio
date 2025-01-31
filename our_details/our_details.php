@@ -93,38 +93,107 @@ function displayTable($data, $title, $className) {
     <!-- Modernizr JS File -->
     <script src="../js/modernizr.custom.js"></script>
     <style>
-        .daily-table,  .Investment, .Income {
-    background-color: #252525;
+        .daily-table {
+            background-color: #252525;
     border-collapse: collapse;
-    color:#fff;
-    width:60%;
-    height:autopx;
-    border-radius:10px;
+    color: #fff;
+    border-radius: 10px;
+    width: 62%;/* Ensure it matches other tables */
+    max-height: 300px; /* Adjust height as needed */
+     overflow-X: auto;/* Enable vertical scrolling */
+    display: block; /* Allow scrolling while keeping the width */
 }
 .container {
     width: 100%;
     padding-right: 15px;
     padding-left: 145px;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: 0px;
+}
+.Client_and_Projects_Details {
+    background-color: #252525;
+    border-collapse: collapse;
+    color: #fff;
+    border-radius: 10px;
+    width: 62%;/* Ensure it matches other tables */
+    max-height: 300px; /* Adjust height as needed */
+     overflow-X: auto;/* Enable vertical scrolling */
+    display: block; /* Allow scrolling while keeping the width */
+}
+
+.Client_and_Projects_Details table {
+    width: 100%; /* Ensure the table inside takes full width */
+}
+.Investment, .monthly-table, .Income, .daily-table table {
+    width: 100%; /* Ensure the table inside takes full width */
 }
  
 
 
-.daily-table td {
-    padding: 8px;
+.daily-table  td {
+    padding-left: 46px;
     border: 1px solid black;
     text-align: center;
 }
+.Client_and_Projects_Details td {
+    padding-left: 46px;
+    border: 1px solid black;
+    text-align: center;
+}
+.Income td{
+    padding-left: 46px;
+    border: 1px solid black;
+    text-align: center;
+}
+.Investment td{
+    padding-left: 46px;
+    border: 1px solid black;
+    text-align: center;
+}
+.container .Income{
+    margin-left:0;
+    padding-left:0;
 
+}
+.container.Income-container {
+    margin-left: -363px;
+}
+td{
+    padding: 8px;
+    border: 1px solid black;
+    text-align: center;
+    white-space: nowrap;
+}
+.Investment {
+    background-color: #252525;
+    border-collapse: collapse;
+    color: #fff;
+    border-radius: 10px;
+    width: 75%;/* Ensure it matches other tables */
+    max-height: 300px; /* Adjust height as needed */
+     overflow-X: auto;/* Enable vertical scrolling */
+    display: block; /* Allow scrolling while keeping the width */  
+}
+ .Income{
+    background-color: #252525;
+    border-collapse: collapse;
+    color: #fff;
+    border-radius: 10px;
+    width: 75%;/* Ensure it matches other tables */
+    max-height: 300px; /* Adjust height as needed */
+     overflow-X: auto;/* Enable vertical scrolling */
+    display: block; /* Allow scrolling while keeping the width */  
+}
 .monthly-table {
     background-color: #252525;
     border-collapse: collapse;
-    color:#fff;
-    border-radius:10px;
+    color: #fff;
+    border-radius: 10px;
+    width: 100%; /* Ensure it matches other tables */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    display: block; /* Allow scrolling while keeping the width */
+    white-space: nowrap; /* Prevent text wrapping */
 
-    width:60%;
-    height:200px;
 }
 .container h3 {
     padding : 25px;
@@ -132,7 +201,7 @@ function displayTable($data, $title, $className) {
 }
 
 .monthly-table td {
-    padding: 8px;
+    padding-left: 46px;
     border: 1px solid black;
     text-align: center;
 }
@@ -142,12 +211,10 @@ function displayTable($data, $title, $className) {
     gap: 20px;
     margin-bottom: 20px;
 }
-.ClientProjects_Details{
 
-}
-.table-row .container {
+/* .table-row {
     width: 50%;
-}
+} */
 
 
     </style>
@@ -276,11 +343,11 @@ function displayTable($data, $title, $className) {
     displayTable($data4, 'Investment', 'Investment');
     ?>
 </div>
-
+<div class="table-row">
 <?php 
 displayTable($data3, 'Client_&_Projects_Details', 'Client_and_Projects_Details');
 
-} ?>
+} ?></div>
 
 </body>
 
