@@ -191,6 +191,12 @@ if (isset($_POST['submit'])) {
             </a>
         </li>
         <?php } ?>
+        <li class="icon-box">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a href="../logout.php">
+                    <h2>Logout</h2>
+                </a>
+            </li>
         
     </ul>
     <!-- Fixed Navigation Ends -->
@@ -229,25 +235,28 @@ if (isset($_POST['submit'])) {
 <div class="container">
     <div class="row">
         <!-- Login Form Starts -->
-        <div class="col-12 col-lg-8">
-            <form class="loginform" method="post" action="#" id="loginForm">
-                <div class="loginform">
-                    <div class="login_row">
-                        <div class="col-12 col-md-4">
-                            <input type="email" name="email" id="email" placeholder="YOUR EMAIL" required>
-                            <span id="emailError" class="error"></span>
-                        </div><br>
-                        <div class="col-12 col-md-4">
-                            <input type="password" name="password" id="password" placeholder="YOUR PASSWORD"required>
-                            <span id="passwordError" class="error"></span>
-                        </div><br>
-                        <div class="col-12">
-                            <button type="submit" name="submit" class="btn btn-login">Submit</button>
-                        </div>
-                    </div>
+        <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <form class="loginform p-4 " method="post" action="#" id="loginForm">
+            
+                <div class="form-group">
+                   
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                    <span id="emailError" class="error"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Your Password" required>
+                    <span id="passwordError" class="error"></span>
+                </div>
+                <div class="text-center">
+                    <button type="submit" name="submit" class="btn btn-primary btn-login ">Submit</button>
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
         <!-- Login Form Ends -->
     </div>
 </div>

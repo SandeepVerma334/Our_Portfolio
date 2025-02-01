@@ -1101,13 +1101,13 @@ body.light hr.separator {
   width: 365px; /* Ensures each element spans the full width */
   background: #252525;
   color: #fff;
-  padding: 11px 26px; /* Adds padding for text inputs and dropdown */
+  padding: 25px 26px; /* Adds padding for text inputs and dropdown */
   margin-bottom: 30px; /* Creates spacing between elements */
   border-radius: 30px; /* Makes the edges rounded */
   outline: none !important;
   transition: 0.3s;
   display: block; /* Ensures each element starts on a new line */
-  margin-left: 400px;
+  margin-left: -40px;
 }
 
 select#role {
@@ -1128,9 +1128,27 @@ select#role {
   justify-content: center;
 }
 .btn-login{
-  margin-left: 520px;
+  margin-left: 20px;
   margin-top: 20px;
+
+  margin-bottom: 30px; /* Creates spacing between elements */
+  border-radius: 30px; /* Makes the edges rounded */
+  outline: none !important;
+  transition: 0.3s;
+  display: block; /* Ensures each element starts on a new line */
+  margin-left: -31px;
+  position: absolute;
 }
+
+
+/* Adjust button size for smaller screens */
+@media (max-width: 576px) {
+  .btn-login {
+      font-size: 14px;
+      padding: 10px;
+  }
+}
+
 /*** login ends ***/
 
 /*** Blog ***/
@@ -1854,7 +1872,7 @@ select#budget {
   color: #252525;
 }
 /*** admindashboard portfolio form styleing starts ***/
-.project .form input[type=text], .project .form input[type=file], .project .form textarea {
+.project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
   border: 1px solid #111;
   width: 340px;
   background: #252525;
@@ -1882,7 +1900,9 @@ input#image {
 input#blogTitle{
   margin-left: -20px;
 }
-
+select#blogCategory {
+  margin-left: -20px;
+}
 select#language {
   color: #838383 !important; /* Dropdown-specific text color */
   font-size: 15px;
@@ -1901,7 +1921,51 @@ select#language {
   justify-content: center;
   margin-top: 50px;
 }
+@media (max-width: 1280px) {
+  .project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
+  
+    width: 300px;
+   
+  }
+}
+@media (max-width: 1180px) {
+  .project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
+  
+    width: 250px;
+   
+  }
+}
+@media (max-width: 1000px) {
+  .project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
+  
+    width: 200px;
+   
+  }
+}
 
+@media (max-width: 768px) {
+  .project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
+    border: 1px solid #111;
+    width: 340px;
+   
+    padding: 11px 26px;
+    margin-bottom: 30px;
+    border-radius: 30px;
+    outline: none !important;
+    transition: 0.3s;
+    
+    margin-left: 35px;
+    height: 55px;
+  }
+  .form-container {
+      padding: 10px;
+  }
+  
+  .form-row {
+      flex-direction: column; /* Stack form fields vertically on small screens */
+      text-align: left;
+  }
+}
 
 .btn-form{
   margin-left: 40px;
