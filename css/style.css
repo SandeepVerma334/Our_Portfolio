@@ -1128,7 +1128,7 @@ select#role {
   justify-content: center;
 }
 .btn-login{
-  margin-left: 20px;
+  
   margin-top: 20px;
 
   margin-bottom: 30px; /* Creates spacing between elements */
@@ -1138,16 +1138,48 @@ select#role {
   display: block; /* Ensures each element starts on a new line */
   margin-left: -31px;
   position: absolute;
+  margin-left:60px;
 }
 
 
 /* Adjust button size for smaller screens */
-@media (max-width: 576px) {
-  .btn-login {
-      font-size: 14px;
+@media (max-width: 768px) {
+  .main-content .container {
       padding: 10px;
   }
+  .main-content .card {
+      padding: 20px;
+  }
+  .main-content .form-group input {
+      font-size: 16px;
+      padding: 10px;
+  }
+  .main-content .btn-block {
+      padding: 12px;
+      font-size: 16px;
+  }
 }
+
+@media (max-width: 576px) {
+  .main-content .container {
+      padding: 10px;
+  }
+  .main-content .col-12 {
+      padding: 0 15px;
+  }
+  .main-content .card {
+      padding: 15px;
+  }
+  .main-content .form-group input {
+      font-size: 16px;
+      padding: 10px;
+  }
+  .main-content .btn-block {
+      padding: 12px;
+      font-size: 16px;
+  }
+}
+
 
 /*** login ends ***/
 

@@ -49,11 +49,18 @@ session_start();
 .about-list li {
   margin-bottom: -2px; /* Adjust this value to control spacing */
   padding: 0; /* Remove unnecessary padding if any */
+  display:flex;
+}
+.about-list .icon i{
+    margin-left:-35px;
+   
 }
 
 /* Adjust the icon and content alignment */
 .about-list .icon {
   margin-right: 10px; /* Reduce space between icon and text */
+  font-size:33px;
+  margin-left:-35px;
 }
 
 .about-list .content {
@@ -64,8 +71,84 @@ session_start();
 .about-list p {
   margin: 0; /* Remove default paragraph margins */
 }
+.icon-list li{
+    display:flex;
+}
+ul.icon-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -112px;
+    gap: 32px;
+  
+}
 
 
+.icon-list {
+  display: flex; /* Align all items in a single row */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px; /* Space between icons */
+  justify-content: center; /* Center align the items */
+}
+
+.icon-link {
+  display: flex; /* Icon inside flex container for consistent alignment */
+  align-items: center; /* Center align the icon vertically */
+  justify-content: center; /* Center align the icon horizontally */
+  width: 50px; /* Set width for icons */
+  height: 50px; /* Set height for icons */
+  /* Background color for the icon link */
+  border-radius: 50%; /* Make icons circular */
+  text-decoration: none; /* Remove underline */
+ background-color: #2b2a2a;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.icon-link i {
+  font-size: 23px; /* Icon size */
+  color:#fff;
+  background-color:transparent ;
+}
+
+@media (max-width: 444px) {
+    ul.icon-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -112px;
+    gap: 32px;
+    
+    /* margin-left:20px; */
+  
+}
+.icon-link {
+  display: flex; /* Icon inside flex container for consistent alignment */
+  align-items: center; /* Center align the icon vertically */
+  justify-content: center; /* Center align the icon horizontally */
+  width: 30px; /* Set width for icons */
+  height: 30px; /* Set height for icons */
+  /* Background color for the icon link */
+  border-radius: 50%; /* Make icons circular */
+  text-decoration: none; /* Remove underline */
+ background-color: #2b2a2a;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+.icon-link {
+  display: flex; /* Icon inside flex container for consistent alignment */
+  align-items: center; /* Center align the icon vertically */
+  justify-content: space-evenly; /* Center align the icon horizontally */
+  width: 30px; /* Set width for icons */
+  height: 30px; /* Set height for icons */
+  /* Background color for the icon link */
+  border-radius: 50%; /* Make icons circular */
+  text-decoration: none; /* Remove underline */
+ background-color: #2b2a2a;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+}
 
 
     </style>

@@ -148,6 +148,79 @@ if (isset($_POST['blog_submit'])) {
             color: #007bff;
             border-bottom: 2px solid #007bff;
         } */
+     /* Default Styling */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 744px tak inputs ek align me aayenge */
+@media (min-width: 601px) and (max-width: 744px) {
+    .form-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .form-field {
+        width: 48%;
+        margin: 5px;
+    }
+
+    .btn-form {
+        width: 48%;
+        text-align: center;
+    }
+}
+
+/* 600px se chhota device ho tab content center me ho jaaye */
+@media (max-width: 600px) {
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .form-field, .btn-form {
+        width: 100%;
+    }
+}
+
+
+
+@media (max-width: 540px) {
+    .container {
+        width: 100% !important;
+        padding: 0 10px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .btn-form {
+        width: 100%;
+        font-size: 12px; /* Even smaller text for buttons */
+        padding: 8px;
+    }
+
+    .tab-content {
+        font-size: 12px; /* Smallest font size for content */
+        padding: 5px;
+    }
+
+    .tag {
+        font-size: 12px;
+        padding: 3px 7px;
+        left: 10px !important;
+    }
+}
+
         .flex-container {
             max-width: 400px;
             margin: 0 auto;
