@@ -91,6 +91,9 @@ session_start();
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             ;
         }
+        button.delete-button.btn.btn-danger {
+    margin-left: 20px;
+}
     </style>
 </head>
 
@@ -388,7 +391,9 @@ session_start();
                                                     data-input-technologies="<?php echo htmlspecialchars($portfolio['inputTechnologies']); ?>"
                                                     data-protofolio-image="<?php echo htmlspecialchars($portfolio['portfolioImage']); ?>">
                                                     Update Portfolio
-                                                </button>
+                                                </button><button class="delete-button btn btn-danger" data-portfolio-id="<?php echo $portfolio['id']; ?>">delete</button>
+
+
 
                                             <?php } ?>
 

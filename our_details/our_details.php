@@ -210,6 +210,7 @@ td{
     justify-content: space-between;
     gap: 20px;
     margin-bottom: 20px;
+   
 }
 
 /* .table-row {
