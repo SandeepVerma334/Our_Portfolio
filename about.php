@@ -381,7 +381,7 @@ ul.icon-list {
                     </div>
                     <div class="col-6">
                         <ul class="about-list  list-unstyled open-sans-font">
-                            <li>
+                        <li>
                                 <span class="icon"><i class="fa fa-language fs-33"></i>
                                 </span>
                                 <div class="language">
