@@ -260,7 +260,7 @@ if (isset($_GET['id'])) {
             </li>
             <li class="icon-box">
                 <i class="fa fa-envelope-open"></i>
-                <a href="contact.html">
+                <a href="contact.php">
                     <h2>Contact</h2>
                 </a>
             </li>
@@ -294,7 +294,7 @@ if (isset($_GET['id'])) {
                     <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a></li>
                     <li><a href="about.php"><i class="fa fa-user"></i><span>About</span></a></li>
                     <li><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                    <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                    <li><a href="contact.php"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                     <li class="active"><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
                     <?php
                     // session_start();

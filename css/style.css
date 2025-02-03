@@ -1953,7 +1953,7 @@ select#language {
   justify-content: center;
   margin-top: 50px;
 }
-@media (max-width: 1280px) {
+ @media (max-width: 1280px) {
   .project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
   
     width: 300px;
@@ -1976,32 +1976,19 @@ select#language {
 }
 
 @media (max-width: 768px) {
-  .project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
-    border: 1px solid #111;
-    width: 340px;
-   
-    padding: 11px 26px;
-    margin-bottom: 30px;
-    border-radius: 30px;
-    outline: none !important;
-    transition: 0.3s;
-    
-    margin-left: 35px;
-    height: 55px;
-  }
-  .form-container {
+
+ .project .form-container {
       padding: 10px;
   }
   
-  .form-row {
-      flex-direction: column; /* Stack form fields vertically on small screens */
+ .project .form-row {
+      flex-direction: column; 
       text-align: left;
   }
 }
 
-.btn-form{
-  margin-left: 40px;
-}
+
+
 /*** admindashboard styling ends ***/
 
 /* .nav{
@@ -2029,8 +2016,9 @@ select#language {
 .nav-tabs a{
   color: #FFF;
 }
- 
-
+ .project .btn-form {
+  margin-left: 45px;
+}
 
 
 
@@ -2062,6 +2050,9 @@ select#language {
 
 
 /*** admindashboard styling ends ***/
+
+
+
 /* /upadte portfolio styling strat/ */
 
 /* Style for inputs */

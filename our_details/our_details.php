@@ -97,33 +97,17 @@ function displayTable($data, $title, $className) {
             background-color: #252525;
     border-collapse: collapse;
     color: #fff;
+   
     border-radius: 10px;
-    width: 62%;/* Ensure it matches other tables */
-    max-height: 300px; /* Adjust height as needed */
-     overflow-X: auto;/* Enable vertical scrolling */
-    display: block; /* Allow scrolling while keeping the width */
-}
-.container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 145px;
-    margin-right: auto;
-    margin-left: 0px;
-}
-.Client_and_Projects_Details {
-    background-color: #252525;
-    border-collapse: collapse;
-    color: #fff;
-    border-radius: 10px;
-    width: 62%;/* Ensure it matches other tables */
+    width: 85%;/* Ensure it matches other tables */
     max-height: 300px; /* Adjust height as needed */
      overflow-X: auto;/* Enable vertical scrolling */
     display: block; /* Allow scrolling while keeping the width */
 }
 
-.Client_and_Projects_Details table {
-    width: 100%; /* Ensure the table inside takes full width */
-}
+
+
+
 .Investment, .monthly-table, .Income, .daily-table table {
     width: 100%; /* Ensure the table inside takes full width */
 }
@@ -150,14 +134,7 @@ function displayTable($data, $title, $className) {
     border: 1px solid black;
     text-align: center;
 }
-.container .Income{
-    margin-left:0;
-    padding-left:0;
 
-}
-.container.Income-container {
-    margin-left: -363px;
-}
 td{
     padding: 8px;
     border: 1px solid black;
@@ -169,7 +146,7 @@ td{
     border-collapse: collapse;
     color: #fff;
     border-radius: 10px;
-    width: 75%;/* Ensure it matches other tables */
+    width: 85%;/* Ensure it matches other tables */
     max-height: 300px; /* Adjust height as needed */
      overflow-X: auto;/* Enable vertical scrolling */
     display: block; /* Allow scrolling while keeping the width */  
@@ -179,7 +156,7 @@ td{
     border-collapse: collapse;
     color: #fff;
     border-radius: 10px;
-    width: 75%;/* Ensure it matches other tables */
+    width: 85%;/* Ensure it matches other tables */
     max-height: 300px; /* Adjust height as needed */
      overflow-X: auto;/* Enable vertical scrolling */
     display: block; /* Allow scrolling while keeping the width */  
@@ -188,8 +165,9 @@ td{
     background-color: #252525;
     border-collapse: collapse;
     color: #fff;
+    max-height: 300px;
     border-radius: 10px;
-    width: 100%; /* Ensure it matches other tables */
+    width: 85%; /* Ensure it matches other tables */
     overflow-x: auto; /* Enable horizontal scrolling */
     display: block; /* Allow scrolling while keeping the width */
     white-space: nowrap; /* Prevent text wrapping */
@@ -205,13 +183,33 @@ td{
     border: 1px solid black;
     text-align: center;
 }
-.table-row {
+/* .table-row {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     margin-bottom: 20px;
-   
+} */
+
+.Client_and_Projects_Details {
+    background-color: #252525;
+    border-collapse: collapse;
+    max-height: 300px;
+    color: #fff;
+    border-radius: 10px;
+    width: 87vw; /* Full viewport width */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    display: block;
 }
+
+.Client_and_Projects_Details table {
+    width: 100%; /* Table ko bhi full width dena zaroori hai */
+    border-collapse: collapse;
+}
+
+.Client_and_Projects_Details td, .Client_and_Projects_Details th {
+    white-space: nowrap; /* Column shrinking avoid karne ke liye */
+}
+
 
 /* .table-row {
     width: 50%;
@@ -269,16 +267,16 @@ td{
     <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
         <li class="icon-box">
             <i class="fa fa-home"></i>
-            <a href="../index.html">
+            <a href="../index.php">
                 <h2>Home</h2>
             </a>
         </li>
         <li class="icon-box">
-            <i class="fa fa-user"></i>
-            <a href="../about.html">
-                <h2>About</h2>
-            </a>
-        </li>
+            <i class="fa fa-info"></i>
+                <a href="../about.php">
+                    <h2>About</h2>
+                </a>
+            </li>
         <li class="icon-box">
             <i class="fa fa-briefcase"></i>
             <a href="../portfolio.php">
@@ -297,6 +295,17 @@ td{
                 <h2>Blog</h2>
             </a>
         </li>
+        <?php 
+        // session_start();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="our_details/our_details.php">
+                <h2>Admin</h2>
+            </a>
+        </li>
+        <?php } ?>
         <li class="icon-box">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <a href="../logout.php">
@@ -314,11 +323,18 @@ td{
             <span></span>
             <span></span>
             <ul class="list-unstyled" id="menu">
-                <li><a href="../index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
-                <li><a href="../about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="../index.php"><i class="fa fa-home"></i><span>Home</span></a></li>
+                <li><a href="../about.php"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="../portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="../contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li class="active"><a href="../blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+                <li><a href="../blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+      <?php
+                    // session_start();
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                        ?>
+                        <li class="active"><a href="our_details/our_details.php"><i class="fa fa-user"></i><span>Admin</span></a></li>
+                    <?php } ?>
+                <li><a href="../logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
             </ul>
         </div>
     </nav>
@@ -331,24 +347,52 @@ td{
     <h1>daily<span>data</span></h1>
     <span class="title-bg">Data</span>
 </section>
-<div class="table-row">
-    <?php
-    displayTable($data1, 'Daily Basis Data Entry', 'daily-table');
-    displayTable($data5, 'Income', 'Income');
-    ?>
-</div>
 
-<div class="table-row">
-    <?php
-    displayTable($data2, 'Monthly Loss and Profit', 'monthly-table');
-    displayTable($data4, 'Investment', 'Investment');
+
+<div id="main-table">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="table1 comun_table">
+           <?php displayTable($data1, 'Daily Basis Data Entry', 'daily-table');?>
+            </div>
+        </div>
+        <div class="col-6">
+        <div class="table2 comun_table">
+     <?php displayTable($data5, 'Income', 'Income');
     ?>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="table-row">
-<?php 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="table1 comun_table">
+           <?php displayTable($data2, 'Monthly Loss and Profit', 'monthly-table');?>
+            </div>
+        </div>
+        <div class="col-6">
+        <div class="table2 comun_table">
+     <?php  displayTable($data4, 'Investment', 'Investment');
+    ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-9">
+            <div class="table1 comun_table">
+           <?php  
 displayTable($data3, 'Client_&_Projects_Details', 'Client_and_Projects_Details');
 
 } ?></div>
+</div>
+            </div>
+        </div>
+      
+    </div>
 
 </body>
 

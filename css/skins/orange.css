@@ -7,6 +7,7 @@
 .about .box-stats h3,
 .title-section h1 span,
 #menu li.active a,
+
 .about-list .icon i,
 body.light #menu li.active a,
 .blog .post-container:hover .post-content .entry-header h3 a,
@@ -19,6 +20,7 @@ body.light #menu li.active a,
 	color: #fa5b0f;
 }
 .about .resume-box .icon,
+.icon-link:hover,
 .contact ul.social li a:hover,
 body.light.contact ul.social li a:hover,
 .preloader .loader,

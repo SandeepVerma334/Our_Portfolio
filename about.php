@@ -55,12 +55,22 @@ session_start();
     margin-left:-35px;
    
 }
+.about .about-list li{
+   
+    width: 10rem;
+
+}
+.about .icon{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
 /* Adjust the icon and content alignment */
 .about-list .icon {
   margin-right: 10px; /* Reduce space between icon and text */
   font-size:33px;
-  margin-left:-35px;
+  margin-left:-17px;
 }
 
 .about-list .content {
@@ -80,9 +90,8 @@ ul.icon-list {
     align-items: center;
     margin-left: -112px;
     gap: 32px;
-  
+    padding-left: 76px;
 }
-
 
 .icon-list {
   display: flex; /* Align all items in a single row */
@@ -105,10 +114,15 @@ ul.icon-list {
  background-color: #2b2a2a;
   transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
+.icon-link:hover{
+    text-decoration:none;
+    
+}
 
 .icon-link i {
   font-size: 23px; /* Icon size */
   color:#fff;
+  padding-left:3px;
   background-color:transparent ;
 }
 
@@ -116,9 +130,10 @@ ul.icon-list {
     ul.icon-list {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     margin-left: -112px;
     gap: 32px;
+    padding-left:96px;
     
     /* margin-left:20px; */
   
@@ -148,6 +163,10 @@ ul.icon-list {
   transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
 
+}
+
+.col-6.language-icon {
+    padding-left:60px;
 }
 
 
@@ -208,12 +227,12 @@ ul.icon-list {
                 <h2>Home</h2>
             </a>
         </li>
-        <li class="icon-box active">
-            <i class="fa fa-user"></i>
-            <a href="about.php">
-                <h2>About</h2>
-            </a>
-        </li>
+        <li class="icon-box">
+            <i class="fa fa-info"></i>
+                <a href="about.php">
+                    <h2>About</h2>
+                </a>
+            </li>
         <li class="icon-box">
             <i class="fa fa-briefcase"></i>
             <a href="portfolio.php">
@@ -222,7 +241,7 @@ ul.icon-list {
         </li>
         <li class="icon-box">
             <i class="fa fa-envelope-open"></i>
-            <a href="contact.html">
+            <a href="contact.php">
                 <h2>Contact</h2>
             </a>
         </li>
@@ -237,12 +256,18 @@ ul.icon-list {
         if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         ?>
         <li class="icon-box">
-            <i class="fa fa-comments"></i>
+            <i class="fa fa-user"></i>
             <a href="our_details/our_details.php">
                 <h2>Admin</h2>
             </a>
         </li>
         <?php } ?>
+        <li class="icon-box">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a href="logout.php">
+                    <h2>Logout</h2>
+                </a>
+            </li>
       
     </ul>
     <!-- Fixed Navigation Ends -->
@@ -257,14 +282,16 @@ ul.icon-list {
                 <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a></li>
                 <li class="active"><a href="about.php"><i class="fa fa-user"></i><span>About</span></a></li>
                 <li><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                <li><a href="contact.php"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                 <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
-                <?php 
-        // session_start();
-        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-        ?>
-                <li><a href="our_details/our_details.php"><i class="fa fa-comments"></i><span>Admin</span></a></li>
-<?php } ?>
+      <?php
+                    // session_start();
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                        ?>
+                        <li><a href="our_details/our_details.php"><i class="fa fa-user"></i><span>Admin</span></a></li>
+                    <?php } ?>
+                <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+     
             </ul>
         </div>
     </nav>
@@ -373,13 +400,13 @@ ul.icon-list {
                               <span class="icon"><i class="fas fa-envelope position-absolute"></i></span>
                               <div class="content">
                                 <p class="title">EMAIL</p>
-                                <p class="value">sandeepkumar941732 <br>@gmail.com</p>
+                                <p class="value">sandeepkumar941732@gmail.com</p>
                               </div>
                             </li>
                           </ul>
                           
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 language-icon">
                         <ul class="about-list  list-unstyled open-sans-font">
                         <li>
                                 <span class="icon"><i class="fa fa-language fs-33"></i>

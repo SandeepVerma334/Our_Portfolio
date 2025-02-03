@@ -19,6 +19,7 @@ body.light #menu li.active a,
 	color: #4169e1;
 }
 .about .resume-box .icon,
+.icon-link:hover,
 .contact ul.social li a:hover,
 body.light.contact ul.social li a:hover,
 .preloader .loader,

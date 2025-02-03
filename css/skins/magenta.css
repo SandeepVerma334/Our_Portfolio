@@ -20,6 +20,7 @@ body.light #menu li.active a,
 }
 .about .resume-box .icon,
 .contact ul.social li a:hover,
+.icon-link:hover,
 body.light.contact ul.social li a:hover,
 .preloader .loader,
 .blog .page-link:hover,

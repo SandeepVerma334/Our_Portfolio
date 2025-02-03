@@ -91,6 +91,9 @@ session_start();
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             ;
         }
+
+
+        
         button.delete-button.btn.btn-danger {
     margin-left: 20px;
 }
@@ -161,7 +164,7 @@ session_start();
                 </a>
             </li>
             <li class="icon-box">
-                <i class="fa fa-user"></i>
+            <i class="fa fa-info"></i>
                 <a href="about.php">
                     <h2>About</h2>
                 </a>
@@ -174,7 +177,7 @@ session_start();
             </li>
             <li class="icon-box">
                 <i class="fa fa-envelope-open"></i>
-                <a href="contact.html">
+                <a href="contact.php">
                     <h2>Contact</h2>
                 </a>
             </li>
@@ -184,17 +187,24 @@ session_start();
                     <h2>Blog</h2>
                 </a>
             </li>
-            <?php
-            // session_start();
-            if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-                ?>
-                <li class="icon-box">
-                    <i class="fa fa-user"></i>
-                    <a href="our_details/our_details.php">
-                        <h2>Admin</h2>
-                    </a>
-                </li>
-            <?php } ?>
+            <?php 
+        // session_start();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="our_details/our_details.php">
+                <h2>Admin</h2>
+            </a>
+        </li>
+        <?php } ?>
+            <li class="icon-box">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a href="logout.php">
+                    <h2>Logout</h2>
+                </a>
+            </li>
+            
 
         </ul>
         <!-- Fixed Navigation Ends -->
@@ -210,7 +220,7 @@ session_start();
                     <li><a href="about.php"><i class="fa fa-user"></i><span>About</span></a></li>
                     <li class="active"><a href="portfolio.php"><i
                                 class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                    <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                    <li><a href="contact.php"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                     <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
                     <?php
                     // session_start();

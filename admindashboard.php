@@ -192,7 +192,7 @@ if (isset($_POST['blog_submit'])) {
 
 
 
-@media (max-width: 540px) {
+/* @media (max-width: 540px) {
     .container {
         width: 100% !important;
         padding: 0 10px;
@@ -205,12 +205,12 @@ if (isset($_POST['blog_submit'])) {
 
     .btn-form {
         width: 100%;
-        font-size: 12px; /* Even smaller text for buttons */
+        font-size: 12px; 
         padding: 8px;
     }
 
     .tab-content {
-        font-size: 12px; /* Smallest font size for content */
+        font-size: 12px;
         padding: 5px;
     }
 
@@ -219,7 +219,7 @@ if (isset($_POST['blog_submit'])) {
         padding: 3px 7px;
         left: 10px !important;
     }
-}
+} */
 
         .flex-container {
             max-width: 400px;
@@ -284,6 +284,35 @@ if (isset($_POST['blog_submit'])) {
         #image::-webkit-file-upload-button {
             color: #6c757d;
         }
+        @media (max-width: 450px) {
+    .project .form input[type=text], .project .form input[type=file], .project .form textarea, select#blogCategory{
+    border: 1px solid #111;
+    width: 340px;
+   
+    padding: 11px 26px;
+    margin-bottom: 30px;
+    border-radius: 30px;
+    outline: none !important;
+    transition: 0.3s;
+    
+    margin-left: -23px;
+    height: 55px;
+  }
+  .nav-tabs {
+    border-bottom: none;
+    border-radius: 2px;
+    text-decoration: none;
+    margin-top: 67px;
+    margin-left: 24px;
+    gap: 35px;
+}
+  .form{
+    margin-left: 24px;
+  }
+    .btn-form{
+        margin-left: 0px;
+    }
+}
     </style>
 </head>
 
@@ -351,7 +380,7 @@ if (isset($_POST['blog_submit'])) {
                 </a>
             </li>
             <li class="icon-box">
-                <i class="fa fa-user"></i>
+            <i class="fa fa-info"></i>
                 <a href="about.php">
                     <h2>About</h2>
                 </a>
@@ -364,7 +393,7 @@ if (isset($_POST['blog_submit'])) {
             </li>
             <li class="icon-box active">
                 <i class="fa fa-envelope-open"></i>
-                <a href="contact.html">
+                <a href="contact.php">
                     <h2>Contact</h2>
                 </a>
             </li>
@@ -374,6 +403,17 @@ if (isset($_POST['blog_submit'])) {
                     <h2>Blog</h2>
                 </a>
             </li>
+            <?php 
+        // session_start();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="our_details/our_details.php">
+                <h2>Admin</h2>
+            </a>
+        </li>
+        <?php } ?>
             <li class="icon-box">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <a href="logout.php">
@@ -396,9 +436,16 @@ if (isset($_POST['blog_submit'])) {
                     <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a></li>
                     <li><a href="about.php"><i class="fa fa-user"></i><span>About</span></a></li>
                     <li><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                    <li class="active"><a href="contact.html"><i
+                    <li class="active"><a href="contact.php"><i
                                 class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                     <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+          <?php
+                    // session_start();
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                        ?>
+                        <li><a href="our_details/our_details.php"><i class="fa fa-user"></i><span>Admin</span></a></li>
+                    <?php } ?>
+                    <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
                 </ul>
             </div>
         </nav>
