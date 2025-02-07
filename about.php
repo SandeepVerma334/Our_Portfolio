@@ -89,8 +89,8 @@ ul.icon-list {
     justify-content: center;
     align-items: center;
     margin-left: -112px;
-    gap: 32px;
-    padding-left: 76px;
+    gap: 0px;
+    padding-left: 55px;
 }
 
 .icon-list {
@@ -132,38 +132,33 @@ ul.icon-list {
     justify-content: center;
     align-items: start;
     margin-left: -112px;
-    gap: 32px;
+    gap: 20px;
     padding-left:96px;
+    }
     
     /* margin-left:20px; */
+    .language-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: start; /* Ya center agar beech mein rakhna ho */
+    }
+    
+    .language-icon .language,
+    .language-icon .icon-list {
+        width: 100%;
+        text-align: left; /* Ya center, agar beech mein chahiye */
+    }
+    
+    .icon-list {
+        display: flex;
+        justify-content: start; /* Ya center agar icons beech mein chahiye */
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
   
-}
-.icon-link {
-  display: flex; /* Icon inside flex container for consistent alignment */
-  align-items: center; /* Center align the icon vertically */
-  justify-content: center; /* Center align the icon horizontally */
-  width: 30px; /* Set width for icons */
-  height: 30px; /* Set height for icons */
-  /* Background color for the icon link */
-  border-radius: 50%; /* Make icons circular */
-  text-decoration: none; /* Remove underline */
- background-color: #2b2a2a;
-  transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
-.icon-link {
-  display: flex; /* Icon inside flex container for consistent alignment */
-  align-items: center; /* Center align the icon vertically */
-  justify-content: space-evenly; /* Center align the icon horizontally */
-  width: 30px; /* Set width for icons */
-  height: 30px; /* Set height for icons */
-  /* Background color for the icon link */
-  border-radius: 50%; /* Make icons circular */
-  text-decoration: none; /* Remove underline */
- background-color: #2b2a2a;
-  transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
 
-}
+
 
 .col-6.language-icon {
     padding-left:60px;
@@ -262,12 +257,16 @@ ul.icon-list {
             </a>
         </li>
         <?php } ?>
+         <?php
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
         <li class="icon-box">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <a href="logout.php">
                     <h2>Logout</h2>
                 </a>
             </li>
+        <?php } ?>
       
     </ul>
     <!-- Fixed Navigation Ends -->
@@ -290,8 +289,12 @@ ul.icon-list {
                         ?>
                         <li><a href="our_details/our_details.php"><i class="fa fa-user"></i><span>Admin</span></a></li>
                     <?php } ?>
-                <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
-     
+                  <?php
+                    // session_start();
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                        ?>
+                        <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+                    <?php } ?>     
             </ul>
         </div>
     </nav>

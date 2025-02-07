@@ -146,13 +146,21 @@ session_start();
             </a>
         </li>
         <?php } ?>
+        <?php
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+         <?php
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
         <li class="icon-box">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <a href="logout.php">
                     <h2>Logout</h2>
                 </a>
             </li>
-       
+        <?php } ?>
+        <?php } ?>
+      
       
     </ul>
     <!-- Fixed Navigation Ends -->
@@ -176,8 +184,12 @@ session_start();
                 ?>
                         <li><a href="our_details/our_details.php"><i class="fa fa-user"></i><span>Admin</span></a></li>
         <?php } ?>
-        <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
-
+          <?php
+                    // session_start();
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                        ?>
+                        <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+                    <?php } ?>
              </ul>
         </div>
     </nav>
@@ -197,7 +209,7 @@ session_start();
                 <h6 class="text-uppercase open-sans-font mb-0 d-block d-sm-none d-lg-block">hi there !</h6>
                 <h1 class="text-uppercase poppins-font row1"><span>I'm</span> Sandeep Verma</h1>
                 <p class="open-sans-font">I'm a Full Stack developer focused on crafting clean & user‑friendly experiences, I am passionate about building excellent software that improves the lives of those around me.</p>
-                <a href="about.html" class="btn btn-about">more about me</a>
+                <a href="about.php" class="btn btn-about">more about me</a>
             </div>
         </div>
 

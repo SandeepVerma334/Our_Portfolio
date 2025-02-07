@@ -414,12 +414,16 @@ if (isset($_POST['blog_submit'])) {
             </a>
         </li>
         <?php } ?>
-            <li class="icon-box">
+             <?php
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        ?>
+        <li class="icon-box">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <a href="logout.php">
                     <h2>Logout</h2>
                 </a>
             </li>
+        <?php } ?>
 
 
         </ul>
@@ -445,8 +449,12 @@ if (isset($_POST['blog_submit'])) {
                         ?>
                         <li><a href="our_details/our_details.php"><i class="fa fa-user"></i><span>Admin</span></a></li>
                     <?php } ?>
-                    <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
-                </ul>
+                      <?php
+                    // session_start();
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                        ?>
+                        <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+                    <?php } ?>                </ul>
             </div>
         </nav>
         <!-- Mobile Menu Ends -->

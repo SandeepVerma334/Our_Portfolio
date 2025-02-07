@@ -132,8 +132,12 @@
                 <li class="active"><a href="portfolio.php"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                 <li><a href="contact.php"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                 <li><a href="blog.php"><i class="fa fa-comments"></i><span>Blog</span></a></li>
-                <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
-
+                  <?php
+                    // session_start();
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                        ?>
+                        <li><a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+                    <?php } ?>
             </ul>
         </div>
     </nav>
